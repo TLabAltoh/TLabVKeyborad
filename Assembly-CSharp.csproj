@@ -57,9 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\TLabVKeyborad\TLabKeyOperator.cs" />
+    <Compile Include="Assets\TLabVKeyborad\TLabVKeyboradAudio.cs" />
     <Compile Include="Assets\TLabVKeyborad\TLabInputField.cs" />
     <Compile Include="Assets\TLabVKeyborad\TLabKey.cs" />
-    <Compile Include="Assets\TLabVKeyborad\TLabVKeyboradAudio.cs" />
     <Compile Include="Assets\TLabVKeyborad\Sample\TLabVKeyboradSample.cs" />
   </ItemGroup>
   <ItemGroup>

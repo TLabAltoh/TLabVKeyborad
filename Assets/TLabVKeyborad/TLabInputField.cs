@@ -15,6 +15,8 @@ public class TLabInputField : MonoBehaviour
     [Header("Image")]
     [SerializeField] GameObject openImage;
     [SerializeField] GameObject rockImage;
+    [Header("Button")]
+    [SerializeField] GameObject inputFieldButton;
     [Header("IsThisMobile")]
     [SerializeField] bool isMobile = false;
 
@@ -31,6 +33,7 @@ public class TLabInputField : MonoBehaviour
         inputFieldFocused = isActive;
         openImage.SetActive(isActive);
         rockImage.SetActive(!isActive);
+        inputFieldButton.SetActive(!isActive);
     }
 
     public void CloseInputFieldButtonClicked()
