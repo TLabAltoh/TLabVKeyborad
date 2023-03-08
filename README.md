@@ -1,5 +1,6 @@
 # TLabVKeyborad
-InputField extension asset for unity
+InputField extension asset for unity.  
+Assets that can use virtual keyboards and corresponding InputFields in WebGL (mobile) and VR
 
 ## demonstration
 [You can play a sample that allows you to check the operation with WebGL in the unity room](https://unityroom.com/games/tlabvkeyborad)
