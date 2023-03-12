@@ -11,13 +11,13 @@ C:\Program Files\Unity\Hub\Editor\2021.3.12f1\Editor\Unity.exe
 -name
 AssetImportWorker0
 -projectPath
-C:/Users/no name boy/source/GameDev/TLabUnityProject/TLabVKeybord
+C:/Users/no name boy/source/GameDev/TLabVKeyborad
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-61208
-Successfully changed project path to: C:/Users/no name boy/source/GameDev/TLabUnityProject/TLabVKeybord
-C:/Users/no name boy/source/GameDev/TLabUnityProject/TLabVKeybord
+61791
+Successfully changed project path to: C:/Users/no name boy/source/GameDev/TLabVKeyborad
+C:/Users/no name boy/source/GameDev/TLabVKeyborad
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
     "memorysetup-bucket-allocator-granularity=16"
     "memorysetup-bucket-allocator-bucket-count=8"
@@ -47,11 +47,11 @@ C:/Users/no name boy/source/GameDev/TLabUnityProject/TLabVKeybord
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Refreshing native plugins compatible for Editor in 74.91 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 67.02 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.3.12f1 (8af3c3e441b1)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/Resources/UnitySubsystems
-[Subsystems] Discovering subsystems at path C:/Users/no name boy/source/GameDev/TLabUnityProject/TLabVKeybord/Assets
+[Subsystems] Discovering subsystems at path C:/Users/no name boy/source/GameDev/TLabVKeyborad/Assets
 GfxDevice: creating device client; threaded=0; jobified=0
 Direct3D:
     Version:  Direct3D 11.0 [level 11.1]
@@ -63,95 +63,95 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56712
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56096
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2021.3.12f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.009778 seconds.
+Registered in 0.010054 seconds.
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 69.50 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 63.79 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.640 seconds
+- Completed reload, in  0.644 seconds
 Domain Reload Profiling:
-	ReloadAssembly (640ms)
-		BeginReloadAssembly (75ms)
+	ReloadAssembly (644ms)
+		BeginReloadAssembly (73ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (452ms)
-			LoadAssemblies (73ms)
+		EndReloadAssembly (457ms)
+			LoadAssemblies (71ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (102ms)
+			SetupTypeCache (103ms)
 			ReleaseScriptCaches (0ms)
 			RebuildScriptCaches (28ms)
-			SetupLoadedEditorAssemblies (271ms)
+			SetupLoadedEditorAssemblies (273ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (60ms)
+				InitializePlatformSupportModulesInManaged (58ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (70ms)
+				RefreshPlugins (64ms)
 				BeforeProcessingInitializeOnLoad (1ms)
-				ProcessInitializeOnLoadAttributes (95ms)
-				ProcessInitializeOnLoadMethodAttributes (45ms)
+				ProcessInitializeOnLoadAttributes (97ms)
+				ProcessInitializeOnLoadMethodAttributes (53ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.006877 seconds.
+Registered in 0.007125 seconds.
 Begin MonoManager ReloadAssembly
-Symbol file LoadedFromMemory doesn't match image C:\Users\no name boy\source\GameDev\TLabUnityProject\TLabVKeybord\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
-Symbol file LoadedFromMemory doesn't match image C:\Users\no name boy\source\GameDev\TLabUnityProject\TLabVKeybord\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\no name boy\source\GameDev\TLabVKeyborad\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Users\no name boy\source\GameDev\TLabVKeyborad\Library\PackageCache\com.unity.visualscripting@1.7.8\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
 Native extension for WindowsStandalone target not found
 Native extension for Android target not found
 Native extension for WebGL target not found
-Refreshing native plugins compatible for Editor in 0.56 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.58 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  1.109 seconds
+- Completed reload, in  1.120 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1109ms)
-		BeginReloadAssembly (214ms)
+	ReloadAssembly (1121ms)
+		BeginReloadAssembly (204ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (6ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (126ms)
-		EndReloadAssembly (778ms)
-			LoadAssemblies (79ms)
+			CreateAndSetChildDomain (128ms)
+		EndReloadAssembly (797ms)
+			LoadAssemblies (70ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
 			SetupTypeCache (253ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (50ms)
-			SetupLoadedEditorAssemblies (353ms)
+			RebuildScriptCaches (52ms)
+			SetupLoadedEditorAssemblies (361ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (17ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (1ms)
 				BeforeProcessingInitializeOnLoad (86ms)
-				ProcessInitializeOnLoadAttributes (213ms)
-				ProcessInitializeOnLoadMethodAttributes (27ms)
-				AfterProcessingInitializeOnLoad (10ms)
+				ProcessInitializeOnLoadAttributes (219ms)
+				ProcessInitializeOnLoadMethodAttributes (28ms)
+				AfterProcessingInitializeOnLoad (11ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (8ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
 Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 0.45 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 0.44 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 3387 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 28 unused Assets / (113.4 KB). Loaded Objects now: 3846.
-Memory consumption went from 116.5 MB to 116.3 MB.
-Total: 2.400300 ms (FindLiveObjects: 0.178400 ms CreateObjectMapping: 0.077400 ms MarkObjects: 2.058000 ms  DeleteObjects: 0.085900 ms)
+Unloading 26 unused Assets / (56.1 KB). Loaded Objects now: 3847.
+Memory consumption went from 116.2 MB to 116.2 MB.
+Total: 2.395100 ms (FindLiveObjects: 0.189100 ms CreateObjectMapping: 0.088600 ms MarkObjects: 2.063000 ms  DeleteObjects: 0.053800 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -163,3 +163,39 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1074073.532964 seconds.
+  path: Assets/TLabVKeyborad/Scenes
+  artifactKey: Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/Scenes using Guid(6ea315d0fd7389c41b19996891e99ae3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8193726cff86800c54781cdc6d54904') in 0.008589 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/TLabVKeyborad/MobileKeyboard.prefab
+  artifactKey: Guid(0f7ba31cbb86a0c44af4baadc18bdb20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/MobileKeyboard.prefab using Guid(0f7ba31cbb86a0c44af4baadc18bdb20) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d7d0bbb8c0027ede80b1bd607c3b11b') in 0.034182 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.783719 seconds.
+  path: Assets/TLabVKeyborad/Scenes/TLabVKeyboradSample.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/Scenes/TLabVKeyboradSample.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb3617794136c008488484a0d435c909') in 0.005468 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 5.644572 seconds.
+  path: Assets/TLabVKeyborad/Sample
+  artifactKey: Guid(1049b406869eb114189344070fb6b6c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/Sample using Guid(1049b406869eb114189344070fb6b6c2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cbf51c1bdc584a2d98d864ace5a7547') in 0.007519 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.050195 seconds.
+  path: Assets/TLabVKeyborad/Sample/icon.png
+  artifactKey: Guid(912ccb702f8d4bd4da30adbf182aa922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/Sample/icon.png using Guid(912ccb702f8d4bd4da30adbf182aa922) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b632e5f62c4f3e6ae228886b7edf80d8') in 0.059494 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 24.231500 seconds.
+  path: Assets/TLabVKeyborad/Sample/Sample.prefab
+  artifactKey: Guid(a4765876f91899545b5a6851fd897de2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/TLabVKeyborad/Sample/Sample.prefab using Guid(a4765876f91899545b5a6851fd897de2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d2a167c87ab9a6ef4ca8856349f0727') in 0.014726 seconds 
