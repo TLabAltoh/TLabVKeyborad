@@ -17,6 +17,8 @@ public class TLabInputField : MonoBehaviour
     [SerializeField] GameObject rockImage;
     [Header("Button")]
     [SerializeField] GameObject inputFieldButton;
+    [Header("HideObject")]
+    [SerializeField] GameObject[] hideObjects;
     [Header("IsThisMobile")]
     [SerializeField] bool isMobile = false;
 
@@ -34,6 +36,9 @@ public class TLabInputField : MonoBehaviour
         openImage.SetActive(isActive);
         rockImage.SetActive(!isActive);
         inputFieldButton.SetActive(!isActive);
+
+        if (isMobile == true)
+            foreach (GameObject hideObject in hideObjects) hideObject.SetActive(!isActive);
     }
 
     public void CloseInputFieldButtonClicked()
@@ -162,6 +167,11 @@ public class TLabInputField : MonoBehaviour
 #if !UNITY_EDITOR && UNITY_WEBGL
         isMobile = IsMobile();
 #endif
+
+#if UNITY_ANDROID
+        isMobile = true;
+#endif
+
         return isMobile;
     }
 
