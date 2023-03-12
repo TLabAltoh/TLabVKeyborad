@@ -53,6 +53,13 @@ public class TLabInputField : MonoBehaviour
         TLabVKeyboradAudio.instance.RockButtonAudio();
     }
 
+    public void SetPlaceHolder(string text)
+    {
+        this.text = "";
+        placeholder.text = text;
+        Display();
+    }
+
     private void OnBackSpacePressed()
     {
         if (text != "")
