@@ -49,6 +49,7 @@ public class TLabInputField : MonoBehaviour
 
     public void InputFieldButtonClicked()
     {
+        placeholder.text = "";
         SwitchKeyborad(true);
         TLabVKeyboradAudio.instance.RockButtonAudio();
     }
