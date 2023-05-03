@@ -7,6 +7,7 @@ Multi-platform InputField for Unity
 ## Getting Started
 ### Prerequisites
 - Unity 2021.3.23f1  
+- TextMeshPro
 ### Installing
 Clone the repository to any directory under Assets in the Unity project that will use the assets with the following command  
 ```
