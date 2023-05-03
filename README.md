@@ -1,7 +1,8 @@
 # TLabVKeyborad
 Multi-platform InputField for Unity
 
-## Screenshot
+## demonstration
+[You can play a sample of the WebGL version.](https://unityroom.com/games/tlabvkeyborad)
 
 ## Getting Started
 ### Prerequisites
