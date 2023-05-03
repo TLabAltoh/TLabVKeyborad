@@ -15,4 +15,4 @@ git submodule add https://github.com/TLabAltoh/TLabVKeyborad.git
 ```
 ## How to use
 1. Open Scenes/TLabVKeyboradSample.unity to see a ready-to-run and build sample
-2. 
+2. Simply placing MobileKeyborad.prefab on any canvas will also work!
