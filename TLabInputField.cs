@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TLabInputField : MonoBehaviour
 {
@@ -9,9 +9,9 @@ public class TLabInputField : MonoBehaviour
     [SerializeField] GameObject romajiBOX;
     [SerializeField] GameObject symbolBOX;
     [SerializeField] GameObject operatorBOX;
-    [Header("Text")]
-    [SerializeField] Text inputText;
-    [SerializeField] Text placeholder;
+    [Header("Text(TMPro)")]
+    [SerializeField] TextMeshProUGUI inputText;
+    [SerializeField] TextMeshProUGUI placeholder;
     [Header("Image")]
     [SerializeField] GameObject openImage;
     [SerializeField] GameObject rockImage;

@@ -1,9 +1,9 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TLabVKeyboradSample : MonoBehaviour
 {
-    [SerializeField] Text isThisMobile;
+    [SerializeField] TextMeshProUGUI isThisMobile;
 
 #if !UNITY_EDITOR && UNITY_WEBGL
     [System.Runtime.InteropServices.DllImport("__Internal")]

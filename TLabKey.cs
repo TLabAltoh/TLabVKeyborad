@@ -1,11 +1,11 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class TLabKey : MonoBehaviour
 {
     [SerializeField] string key;
     [SerializeField] string shiftsKey;
-    [SerializeField] Text keyText;
+    [SerializeField] TextMeshProUGUI keyText;
     private TLabInputField inputField;
     private bool isShiftOn = false;
 
