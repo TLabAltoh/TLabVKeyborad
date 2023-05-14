@@ -28,6 +28,7 @@ public class TLabInputField : MonoBehaviour
     private TLabKey[] keys;
     private TLabKeyOperator[] keyOperators;
     private bool inputFieldFocused = true;
+    private float backSpaceKeyTime = 0.0f;
 
     private void SwitchKeyborad(bool isActive)
     {
@@ -152,15 +153,22 @@ public class TLabInputField : MonoBehaviour
 
     private void UpdateKeyboradInPC()
     {
-        if (inputFieldFocused == true && Input.anyKeyDown == true)
+        backSpaceKeyTime += Time.deltaTime;
+
+        if (inputFieldFocused && Input.anyKey == true)
         {
             TLabVKeyboradAudio.instance.KeyAudio();
             string inputString = Input.inputString;
             if (Input.GetKeyDown(KeyCode.Return)) OnEnterPressed();
             else if (Input.GetKeyDown(KeyCode.Tab)) OnTabPressed();
             else if (Input.GetKeyDown(KeyCode.Space)) OnSpacePressed();
-            else if (Input.GetKeyDown(KeyCode.Backspace)) OnBackSpacePressed();
+            else if (Input.GetKey(KeyCode.Backspace) && backSpaceKeyTime > 0.1f)
+            {
+                OnBackSpacePressed();
+                backSpaceKeyTime = 0.0f;
+            }
             else if (inputString != "" && inputString != "") AddKey(inputString);
+            else if (Input.GetMouseButtonDown(1)) AddKey(GUIUtility.systemCopyBuffer);
         }
     }
 
