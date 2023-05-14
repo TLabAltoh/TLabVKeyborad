@@ -9,16 +9,21 @@ public class TLabInputField : MonoBehaviour
     [SerializeField] GameObject romajiBOX;
     [SerializeField] GameObject symbolBOX;
     [SerializeField] GameObject operatorBOX;
+
     [Header("Text(TMPro)")]
     [SerializeField] TextMeshProUGUI inputText;
     [SerializeField] TextMeshProUGUI placeholder;
+
     [Header("Image")]
     [SerializeField] GameObject openImage;
     [SerializeField] GameObject rockImage;
+
     [Header("Button")]
     [SerializeField] GameObject inputFieldButton;
+
     [Header("HideObject")]
     [SerializeField] GameObject[] hideObjects;
+
     [Header("IsThisMobile")]
     [SerializeField] bool isMobile = false;
 
@@ -130,7 +135,7 @@ public class TLabInputField : MonoBehaviour
         }
     }
 
-    private void Display()
+    public void Display()
     {
         inputFieldFocused = true;
         inputText.text = text;
