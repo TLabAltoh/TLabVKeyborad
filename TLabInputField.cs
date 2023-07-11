@@ -135,14 +135,20 @@ public class TLabInputField : MonoBehaviour
         }
     }
 
-    public void Display()
+    private void SwitchPlaseholder()
     {
-        inputFieldFocused = true;
-        inputText.text = text;
         if (inputText.text == "")
             placeholder.color = new Color(0.196f, 0.196f, 0.196f, 0.5f);
         else
             placeholder.color = new Color(0.196f, 0.196f, 0.196f, 0.0f);
+    }
+
+    public void Display()
+    {
+        inputFieldFocused = true;
+        inputText.text = text;
+
+        SwitchPlaseholder();
     }
 
     public void AddKey(string key)
@@ -222,6 +228,8 @@ public class TLabInputField : MonoBehaviour
         }
 
         SwitchKeyborad(false);
+
+        this.text = inputText.text;
     }
 
     private void Update()
