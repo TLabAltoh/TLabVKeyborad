@@ -230,6 +230,8 @@ public class TLabInputField : MonoBehaviour
         SwitchKeyborad(false);
 
         this.text = inputText.text;
+
+        SwitchPlaseholder();
     }
 
     private void Update()
