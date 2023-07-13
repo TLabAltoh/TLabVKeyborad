@@ -1,62 +1,90 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
+[RequireComponent(typeof(AudioSource))]
 public class TLabInputField : MonoBehaviour
 {
+    [Header("Audio")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip keyStroke;
+    [SerializeField] private AudioClip lockButtonPress;
+
     [Header("KeyBOX")]
-    [SerializeField] GameObject keyBOX;
-    [SerializeField] GameObject romajiBOX;
-    [SerializeField] GameObject symbolBOX;
-    [SerializeField] GameObject operatorBOX;
+    [SerializeField] private GameObject keyBOX;
+    [SerializeField] private GameObject romajiBOX;
+    [SerializeField] private GameObject symbolBOX;
+    [SerializeField] private GameObject operatorBOX;
 
     [Header("Text(TMPro)")]
-    [SerializeField] TextMeshProUGUI inputText;
-    [SerializeField] TextMeshProUGUI placeholder;
+    [SerializeField] private TextMeshProUGUI inputText;
+    [SerializeField] private TextMeshProUGUI placeholder;
 
     [Header("Image")]
-    [SerializeField] GameObject openImage;
-    [SerializeField] GameObject rockImage;
+    [SerializeField] private GameObject openImage;
+    [SerializeField] private GameObject lockImage;
 
     [Header("Button")]
-    [SerializeField] GameObject inputFieldButton;
+    [SerializeField] private GameObject inputFieldButton;
 
     [Header("HideObject")]
-    [SerializeField] GameObject[] hideObjects;
+    [SerializeField] private GameObject[] hideObjects;
 
     [Header("IsThisMobile")]
-    [SerializeField] bool isMobile = false;
+    [SerializeField] private bool isMobile = false;
 
     [System.NonSerialized] public string text = "";
 
-    private Action keyUpdate;
-    private TLabKey[] keys;
-    private TLabKeyOperator[] keyOperators;
-    private bool inputFieldFocused = true;
     private float backSpaceKeyTime = 0.0f;
+    private bool inputFieldFocused = true;
+    private List<string> inputBuffer = new List<string>();
+
+    private TLabKey[] Keys(GameObject target)
+    {
+        return target.GetComponentsInChildren<TLabKey>();
+    }
+
+#if UNITY_EDITOR
+    public void InitializeTLabKey()
+    {
+        foreach(TLabKey key in Keys(keyBOX))
+        {
+            key.Initialize();
+            EditorUtility.SetDirty(key);
+        }
+    }
+#endif
+
+    private void LockButtonPressAudio()
+    {
+        audioSource.PlayOneShot(lockButtonPress, 0.5f);
+    }
+
+    private void KeyStrokeAudio()
+    {
+        audioSource.PlayOneShot(keyStroke);
+    }
 
     private void SwitchKeyborad(bool isActive)
     {
         keyBOX.SetActive(isActive && isMobile);
         inputFieldFocused = isActive;
         openImage.SetActive(isActive);
-        rockImage.SetActive(!isActive);
+        lockImage.SetActive(!isActive);
         inputFieldButton.SetActive(!isActive);
 
         if (isMobile == true)
             foreach (GameObject hideObject in hideObjects) hideObject.SetActive(!isActive);
     }
 
-    public void CloseInputFieldButtonClicked()
+    public void OnFocus(bool active)
     {
-        SwitchKeyborad(false);
-        TLabVKeyboradAudio.instance.RockButtonAudio();
-    }
-
-    public void InputFieldButtonClicked()
-    {
-        SwitchKeyborad(true);
-        TLabVKeyboradAudio.instance.RockButtonAudio();
+        SwitchKeyborad(active);
+        LockButtonPressAudio();
     }
 
     public void SetPlaceHolder(string text)
@@ -66,7 +94,7 @@ public class TLabInputField : MonoBehaviour
         Display();
     }
 
-    private void OnBackSpacePressed()
+    public void OnBackSpacePressed()
     {
         if (text != "")
         {
@@ -75,14 +103,11 @@ public class TLabInputField : MonoBehaviour
         }
     }
 
-    private void OnEnterPressed()
-    {
-        //
-    }
+    public void OnEnterPressed() { }
 
     private void OnShiftPressed()
     {
-        foreach (TLabKey key in keys) key.ShiftPressed();
+        foreach (TLabKey key in Keys(keyBOX)) key.ShiftPressed();
     }
 
     private void OnSpacePressed()
@@ -92,16 +117,10 @@ public class TLabInputField : MonoBehaviour
 
     private void OnSymbolPressed()
     {
-        if (romajiBOX.activeSelf == true)
-        {
-            romajiBOX.SetActive(false);
-            symbolBOX.SetActive(true);
-        }
-        else
-        {
-            romajiBOX.SetActive(true);
-            symbolBOX.SetActive(false);
-        }
+        bool active = romajiBOX.activeSelf;
+
+        romajiBOX.SetActive(!active);
+        symbolBOX.SetActive(active);
     }
 
     private void OnTabPressed()
@@ -109,30 +128,35 @@ public class TLabInputField : MonoBehaviour
         AddKey("    ");
     }
 
-    public void OperatorEvent(KeybordOperator keybordOperator)
+    public void OnInput(string input)
     {
-        TLabVKeyboradAudio.instance.KeyAudio();
-        switch (keybordOperator)
+        if (!inputFieldFocused) return;
+
+        KeyStrokeAudio();
+
+        switch (input)
         {
-            case KeybordOperator.BackSpace:
+            case "BACKSPACE":
                 OnBackSpacePressed();
-                break;
-            case KeybordOperator.Enter:
+                return;
+            case "ENTER":
                 OnEnterPressed();
-                break;
-            case KeybordOperator.Shift:
+                return;
+            case "SHIFT":
                 OnShiftPressed();
-                break;
-            case KeybordOperator.Space:
+                return;
+            case "SPACE":
                 OnSpacePressed();
-                break;
-            case KeybordOperator.Symbol:
-                OnSymbolPressed();
-                break;
-            case KeybordOperator.Tab:
+                return;
+            case "TAB":
                 OnTabPressed();
-                break;
+                return;
+            case "SYMBOL":
+                OnSymbolPressed();
+                return;
         }
+
+        AddKey(input);
     }
 
     private void SwitchPlaseholder()
@@ -153,34 +177,9 @@ public class TLabInputField : MonoBehaviour
 
     public void AddKey(string key)
     {
+        KeyStrokeAudio();
         text += key;
         Display();
-    }
-
-    private void UpdateKeyboradInMobile()
-    {
-        //
-    }
-
-    private void UpdateKeyboradInPC()
-    {
-        backSpaceKeyTime += Time.deltaTime;
-
-        if (inputFieldFocused && Input.anyKey == true)
-        {
-            TLabVKeyboradAudio.instance.KeyAudio();
-            string inputString = Input.inputString;
-            if (Input.GetKeyDown(KeyCode.Return)) OnEnterPressed();
-            else if (Input.GetKeyDown(KeyCode.Tab)) OnTabPressed();
-            else if (Input.GetKeyDown(KeyCode.Space)) OnSpacePressed();
-            else if (Input.GetKey(KeyCode.Backspace) && backSpaceKeyTime > 0.1f)
-            {
-                OnBackSpacePressed();
-                backSpaceKeyTime = 0.0f;
-            }
-            else if (inputString != "" && inputString != "") AddKey(inputString);
-            else if (Input.GetMouseButtonDown(1)) AddKey(GUIUtility.systemCopyBuffer);
-        }
     }
 
 #if !UNITY_EDITOR && UNITY_WEBGL
@@ -201,31 +200,52 @@ public class TLabInputField : MonoBehaviour
         return isMobile;
     }
 
+    private void InitalizeVirtualKeyborad()
+    {
+        bool romajiBOXActive = romajiBOX.activeSelf;
+        bool symbolBOXActive = symbolBOX.activeSelf;
+        bool operatorBoxActive = operatorBOX.activeSelf;
+        romajiBOX.SetActive(true);
+        symbolBOX.SetActive(true);
+        operatorBOX.SetActive(true);
+        foreach (TLabKey key in Keys(keyBOX)) key.SetKeyInputBuffer(inputBuffer);
+        romajiBOX.SetActive(romajiBOXActive);
+        symbolBOX.SetActive(symbolBOXActive);
+        operatorBOX.SetActive(operatorBoxActive);
+    }
+
+    private void UpdateKeyboradInMobile()
+    {
+        foreach (string input in inputBuffer) OnInput(input);
+
+        inputBuffer.Clear();
+    }
+
+    private void UpdateKeyboradInPC()
+    {
+        backSpaceKeyTime += Time.deltaTime;
+
+        if (Input.anyKey == true)
+        {
+            string inputString = Input.inputString;
+
+            if (Input.GetKeyDown(KeyCode.Return)) OnEnterPressed();
+            else if (Input.GetKeyDown(KeyCode.Tab)) OnTabPressed();
+            else if (Input.GetKeyDown(KeyCode.Space)) OnSpacePressed();
+            else if (Input.GetKey(KeyCode.Backspace) && backSpaceKeyTime > 0.1f)
+            {
+                OnBackSpacePressed();
+                backSpaceKeyTime = 0.0f;
+            }
+            else if (inputString != "" && inputString != "") AddKey(inputString);
+            else if (Input.GetMouseButtonDown(1)) AddKey(GUIUtility.systemCopyBuffer);
+        }
+    }
+
     private void Start()
     {
-        if (CheckIfMobile() == true)
-        {
-            bool romajiBOXActive = romajiBOX.activeSelf;
-            bool symbolBOXActive = symbolBOX.activeSelf;
-            romajiBOX.SetActive(true);
-            symbolBOX.SetActive(true);
-            keys = keyBOX.GetComponentsInChildren<TLabKey>();
-            foreach (TLabKey key in keys) key.SetTLabInputField(this);
-            romajiBOX.SetActive(romajiBOXActive);
-            symbolBOX.SetActive(symbolBOXActive);
-
-            bool operatorBOXActive = operatorBOX.activeSelf;
-            operatorBOX.SetActive(true);
-            keyOperators = keyBOX.GetComponentsInChildren<TLabKeyOperator>();
-            foreach (TLabKeyOperator keyOperator in keyOperators) keyOperator.SetTLabInputField(this);
-            operatorBOX.SetActive(operatorBOXActive);
-
-            keyUpdate = UpdateKeyboradInMobile;
-        }
-        else
-        {
-            keyUpdate = UpdateKeyboradInPC;
-        }
+        if (CheckIfMobile())
+            InitalizeVirtualKeyborad();
 
         SwitchKeyborad(false);
 
@@ -236,16 +256,34 @@ public class TLabInputField : MonoBehaviour
 
     private void Update()
     {
-        keyUpdate();
+        if (isMobile)
+            UpdateKeyboradInMobile();
+        else
+            UpdateKeyboradInPC();
     }
 }
 
-public enum KeybordOperator
+#if UNITY_EDITOR
+[CustomEditor(typeof(TLabInputField))]
+[CanEditMultipleObjects]
+
+public class TLabInputFieldEditor : Editor
 {
-    BackSpace,
-    Enter,
-    Shift,
-    Symbol,
-    Tab,
-    Space
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+
+        serializedObject.Update();
+
+        TLabInputField inputField = target as TLabInputField;
+        if (GUILayout.Button("Initialize"))
+        {
+            inputField.InitializeTLabKey();
+            EditorUtility.SetDirty(inputField);
+        }
+
+        serializedObject.ApplyModifiedProperties();
+    }
 }
+#endif

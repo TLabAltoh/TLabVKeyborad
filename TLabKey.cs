@@ -1,29 +1,50 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 using TMPro;
 
 public class TLabKey : MonoBehaviour
 {
-    [SerializeField] string key;
-    [SerializeField] string shiftsKey;
-    [SerializeField] TextMeshProUGUI keyText;
-    private TLabInputField inputField;
+    [SerializeField] private string current;
+    [SerializeField] private string lowercase;
+    [SerializeField] private string uppercase;
+    [SerializeField] private string lowercaseDisp;
+    [SerializeField] private string uppercaseDisp;
+    [SerializeField] private TextMeshProUGUI keyText;
+
+    private List<string> inputBuffer;
     private bool isShiftOn = false;
 
-    public void SetTLabInputField(TLabInputField inputField)
+#if UNITY_EDITOR
+    public void Initialize()
     {
-        this.inputField = inputField;
-        // Debug.Log(gameObject.name + ": TLabInputField registed");
+        lowercase = this.gameObject.name.Split("_")[0];
+        uppercase = this.gameObject.name.Split("_")[1];
+
+        lowercaseDisp = lowercase;
+        uppercaseDisp = uppercase;
+
+        current = lowercase;
+    }
+#endif
+
+    public void SetKeyInputBuffer(List<string> inputBuffer)
+    {
+        this.inputBuffer = inputBuffer;
     }
 
     public void Press()
     {
-        TLabVKeyboradAudio.instance.KeyAudio();
-        inputField.AddKey(this.keyText.text);
+        inputBuffer.Add(current);
     }
 
     public void ShiftPressed()
     {
         isShiftOn = !isShiftOn;
-        keyText.text = isShiftOn == true ? shiftsKey : key;
+        current = isShiftOn ? uppercase : lowercase;
+        keyText.text = isShiftOn ? uppercaseDisp : lowercaseDisp;
     }
 }
