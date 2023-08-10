@@ -1,17 +1,19 @@
 using UnityEngine;
 using TMPro;
 
-public class TLabVKeyboradSample : MonoBehaviour
+namespace TLab.InputField
 {
-    [SerializeField] TextMeshProUGUI isThisMobile;
+    public class TLabVKeyboradSample : MonoBehaviour
+    {
+        [SerializeField] TextMeshProUGUI isThisMobile;
 
 #if !UNITY_EDITOR && UNITY_WEBGL
     [System.Runtime.InteropServices.DllImport("__Internal")]
     private static extern bool IsMobile();
 #endif
 
-    void Start()
-    {
+        void Start()
+        {
 #if !UNITY_EDITOR && UNITY_WEBGL
         isThisMobile.text = IsMobile() ? "Mobile" : "PC";
         return;
@@ -21,6 +23,7 @@ public class TLabVKeyboradSample : MonoBehaviour
         isThisMobile.text = "Mobile";
         return;
 #endif
-        isThisMobile.text = "PC";
+            isThisMobile.text = "PC";
+        }
     }
 }
