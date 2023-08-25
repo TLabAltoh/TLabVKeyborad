@@ -11,7 +11,6 @@ As this repository is subject to a destructive series of updates, it is recommen
 [You can play a sample of the WebGL version.](https://unityroom.com/games/tlabvkeyborad)
 
 ## Getting Started
-
 ### Prerequisites
 - Unity 2021.3.23f1  
 - TextMeshPro
