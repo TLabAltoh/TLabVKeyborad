@@ -19,5 +19,5 @@ As this repository is subject to a destructive series of updates, it is recommen
 Clone the repository or download it from the release and place it under any Unity project
 
 ### How to use
-1. Open Scenes/TLabVKeyboradSample.unity to see a ready-to-run and build sample
-2. Simply placing MobileKeyborad.prefab on any canvas will also work!
+- Open Scenes/TLabVKeyboradSample.unity to see a ready-to-run and build sample
+- Simply placing MobileKeyborad.prefab on any canvas will also work!
