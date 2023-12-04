@@ -23,15 +23,15 @@ namespace TLab.InputField
         [SerializeField] private AudioSource m_audioSource;
         [SerializeField] private AudioClip m_lockKeyborad;
 
-        [System.NonSerialized] public string m_text = "";
+        [System.NonSerialized] public string text = "";
 
         #region KEY_EVENT
 
         public override void OnBackSpacePressed()
         {
-            if (m_text != "")
+            if (text != "")
             {
-                m_text = m_text.Remove(m_text.Length - 1);
+                text = text.Remove(text.Length - 1);
                 Display();
             }
         }
@@ -92,20 +92,20 @@ namespace TLab.InputField
 
         public void Display()
         {
-            m_inputText.text = m_text;
+            m_inputText.text = text;
 
             SwitchPlaseholder();
         }
 
         public void AddKey(string key)
         {
-            m_text += key;
+            text += key;
             Display();
         }
 
         public void SetPlaceHolder(string text)
         {
-            this.m_text = "";
+            this.text = "";
             m_placeholder.text = text;
             Display();
         }
@@ -114,7 +114,7 @@ namespace TLab.InputField
         {
             OnFocus(false);
 
-            m_text = m_inputText.text;
+            text = m_inputText.text;
 
             SwitchPlaseholder();
         }
