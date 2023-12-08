@@ -5,29 +5,22 @@ using TMPro;
 namespace TLab.InputField
 {
     [RequireComponent(typeof(AudioSource))]
-    public class TLabInputField : TLabInputFieldBase
+    public class SimpleInputField : TLabInputFieldBase
     {
         [Header("Text (TMPro)")]
         [SerializeField] private TextMeshProUGUI m_inputText;
         [SerializeField] private TextMeshProUGUI m_placeholder;
 
-        [Header("Image")]
-        [SerializeField] private GameObject m_openImage;
-        [SerializeField] private GameObject m_lockImage;
-
         [Header("Button")]
         [SerializeField] private Button m_focusButton;
-
-        [Header("HideObject")]
-        [SerializeField] private GameObject[] m_hideObjects;
 
         [Header("Audio")]
         [SerializeField] private AudioSource m_audioSource;
         [SerializeField] private AudioClip m_lockKeyborad;
 
-        [System.NonSerialized] public string text = "";
-
         private const float IMMEDIATELY = 0f;
+
+        [System.NonSerialized] public string text = "";
 
         #region KEY_EVENT
 
@@ -50,26 +43,36 @@ namespace TLab.InputField
 
         #region FOUCUS_EVENET
 
+        private void OnFocusAudio() => AudioUtility.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
+
         public override void OnFocus(bool active)
         {
             base.OnFocus(active);
 
-            m_openImage.SetActive(active);
-            m_lockImage.SetActive(!active);
-
             m_focusButton.enabled = !active;
+
+            var hide = !inputFieldIsActive;
 
             if (m_keyborad.isMobile)
             {
-                foreach (GameObject hideObject in m_hideObjects)
-                {
-                    hideObject.SetActive(!active);
-                }
-
-                m_keyborad.HideKeyborad(!active);
+                m_keyborad.HideKeyborad(hide);
             }
 
-            AudioUtility.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
+            OnFocusAudio();
+        }
+
+        public override void OnFocus()
+        {
+            base.OnFocus();
+
+            var hide = !inputFieldIsActive;
+
+            if (m_keyborad.isMobile)
+            {
+                m_keyborad.HideKeyborad(hide);
+            }
+
+            OnFocusAudio();
         }
 
         #endregion FOUCUS_EVENET
