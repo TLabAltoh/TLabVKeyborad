@@ -20,7 +20,7 @@ namespace TLab.InputField
 #elif UNITY_ANDROID
             return true;
 #else
-            return = false;
+            return false;
 #endif
         }
     }
