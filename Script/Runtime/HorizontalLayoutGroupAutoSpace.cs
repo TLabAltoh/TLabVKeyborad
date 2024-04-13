@@ -74,6 +74,7 @@ namespace TLab.InputField
             Awake();
         }
 
+#if UNITY_EDITOR
         protected override void Reset()
         {
             if (m_layoutGroup == null)
@@ -81,6 +82,7 @@ namespace TLab.InputField
                 m_layoutGroup = GetComponent<HorizontalLayoutGroup>();
             }
         }
+#endif
 
         protected override void Awake()
         {
