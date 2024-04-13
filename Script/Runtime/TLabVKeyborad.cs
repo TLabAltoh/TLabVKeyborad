@@ -24,8 +24,17 @@ namespace TLab.InputField
         [Header("Transform Anchor")]
         [SerializeField] private Transform m_anchor;
 
-        [Header("callback")]
+        [Header("Callback")]
         [SerializeField] private UnityEvent<TLabVKeyborad, bool> m_onHide;
+
+#if UNITY_EDITOR
+        [Header("Keyborad Visual (Editor Only)")]
+        public Sprite m_keyImage;
+        public Material m_keyMat;
+        public Color m_keyImageColor = Color.white;
+
+        public ColorBlock m_keyColorBlock;
+#endif
 
         [SerializeField, HideInInspector]
         private TLabInputFieldBase m_inputFieldBase;
@@ -258,7 +267,7 @@ namespace TLab.InputField
             }
         }
 
-        public void CheckTLabKeyExist()
+        public void SetUpKey()
         {
             m_romajiBOX.SetActive(true);
             m_symbolBOX.SetActive(true);
@@ -272,6 +281,31 @@ namespace TLab.InputField
             {
                 key.Setup();
                 UnityEditor.EditorUtility.SetDirty(key);
+            }
+
+            m_romajiBOX.SetActive(true);
+            m_symbolBOX.SetActive(false);
+            m_operatorBOX.SetActive(true);
+        }
+
+        public void SetUpKeyVisual()
+        {
+            m_romajiBOX.SetActive(true);
+            m_symbolBOX.SetActive(true);
+            m_operatorBOX.SetActive(true);
+
+            foreach (var key in KeyBase.Keys(m_keyBOX))
+            {
+                var button = key.GetComponent<Button>();
+                button.colors = m_keyColorBlock;
+
+                var image = key.GetComponent<Image>();
+                image.color = m_keyImageColor;
+                image.sprite = m_keyImage;
+                image.material = m_keyMat;
+
+                UnityEditor.EditorUtility.SetDirty(image);
+                UnityEditor.EditorUtility.SetDirty(button);
             }
 
             m_romajiBOX.SetActive(true);
