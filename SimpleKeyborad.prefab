@@ -17458,7 +17458,6 @@ GameObject:
   - component: {fileID: 3063154159034142251}
   - component: {fileID: 7775150997293162039}
   - component: {fileID: 4449721481549372445}
-  - component: {fileID: 3369099427744848598}
   m_Layer: 5
   m_Name: SimpleKeyborad
   m_TagString: Untagged
@@ -17618,21 +17617,6 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_inputFieldBase: {fileID: 0}
---- !u!114 &3369099427744848598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7080640460636786048}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91686fb0930adab4087177278ad40c29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_keyborad: {fileID: 4449721481549372445}
-  m_activeOnAwake: 1
-  m_webview: {fileID: 0}
 --- !u!1 &7153047261190702050
 GameObject:
   m_ObjectHideFlags: 0
