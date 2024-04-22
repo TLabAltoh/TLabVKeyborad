@@ -67,7 +67,7 @@ namespace TLab.InputField
 
         public bool initialized => m_initialized;
 
-        public bool keyboradIsActive => m_keyBOX.activeSelf;
+        public bool isActive => m_keyBOX.activeSelf;
 
         public TLabInputFieldBase inputFieldBase => m_inputFieldBase;
 
