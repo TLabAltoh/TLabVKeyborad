@@ -2,7 +2,7 @@
 uGUI based multi-platform input field for Unity
 
 ## Getting Started
-### Dependency
+### Requirements
 - TextMeshPro
 
 ### Installing
