@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
     [RequireComponent(typeof(AudioSource))]
-    public class TLabInputField : TLabInputFieldBase
+    public class InputField : InputFieldBase
     {
         [Header("Text (TMPro)")]
         [SerializeField] private TextMeshProUGUI m_inputText;
@@ -68,7 +68,7 @@ namespace TLab.InputField
                 m_keyborad.HideKeyborad(!active);
             }
 
-            AudioUtility.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
+            AudioHandler.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
         }
 
         #endregion FOUCUS_EVENET

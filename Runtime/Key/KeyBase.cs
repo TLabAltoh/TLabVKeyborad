@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
     public class KeyBase : MonoBehaviour
     {

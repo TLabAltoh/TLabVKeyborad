@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
     [RequireComponent(typeof(AudioSource))]
     public class TLabVKeyborad : MonoBehaviour
@@ -37,7 +37,7 @@ namespace TLab.InputField
 #endif
 
         [SerializeField, HideInInspector]
-        private TLabInputFieldBase m_inputFieldBase;
+        private InputFieldBase m_inputFieldBase;
 
         private bool m_mobile = false;
         private bool m_shift = false;
@@ -58,7 +58,7 @@ namespace TLab.InputField
         {
             get
             {
-                m_mobile = Util.mobile;
+                m_mobile = Platform.mobile;
                 return m_mobile;
             }
         }
@@ -69,15 +69,24 @@ namespace TLab.InputField
 
         public bool isActive => m_keyBOX.activeSelf;
 
-        public TLabInputFieldBase inputFieldBase => m_inputFieldBase;
+        public InputFieldBase inputFieldBase => m_inputFieldBase;
 
         private string THIS_NAME => "[ " + this.GetType() + "] ";
 
-        public void SwitchInputField(TLabInputFieldBase inputFieldBase) => m_inputFieldBase = inputFieldBase;
+        public void SwitchInputField(InputFieldBase inputFieldBase)
+        {
+            m_inputFieldBase = inputFieldBase;
+        }
 
-        public void OnKeyPress(string key) => m_keyBuffer.Add(key);
+        public void OnKeyPress(string key)
+        {
+            m_keyBuffer.Add(key);
+        }
 
-        public void OnSKeyPress(SKeyCode sKey) => m_sKeyBuffer.Add(sKey);
+        public void OnSKeyPress(SKeyCode sKey)
+        {
+            m_sKeyBuffer.Add(sKey);
+        }
 
         public void SetTransform(Vector3 position, Vector3 target, Vector3 worldUp)
         {
@@ -120,7 +129,7 @@ namespace TLab.InputField
                 return;
             }
 
-            m_mobile = Util.mobile;
+            m_mobile = Platform.mobile;
 
             if (m_mobile)
             {
@@ -204,14 +213,14 @@ namespace TLab.InputField
                             break;
                     }
 
-                    AudioUtility.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
+                    AudioHandler.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
                 }
 
                 foreach (string key in m_keyBuffer)
                 {
                     m_inputFieldBase?.OnKeyPressed(key);
 
-                    AudioUtility.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
+                    AudioHandler.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
                 }
 
                 m_sKeyBuffer.Clear();
