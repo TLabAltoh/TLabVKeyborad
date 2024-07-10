@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
     /// <summary>
     /// For fixed-width child content, the layout space is not

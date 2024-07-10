@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
     public enum SKeyCode
     {

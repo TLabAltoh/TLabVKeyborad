@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
-    public class TLabInputFieldBase : MonoBehaviour
+    public class InputFieldBase : MonoBehaviour
     {
         [Header("Keyborad")]
         [SerializeField] protected TLabVKeyborad m_keyborad;
@@ -10,7 +10,13 @@ namespace TLab.InputField
         [Header("Option")]
         [SerializeField] protected bool m_activeOnAwake = false;
 
-        public bool inputFieldIsActive => m_keyborad.inputFieldBase == this;
+        public bool inputFieldIsActive
+        {
+            get
+            {
+                return m_keyborad.inputFieldBase == this;
+            }
+        }
 
         #region KEY_EVENT
 
@@ -32,7 +38,10 @@ namespace TLab.InputField
 
         #region FOUCUS_EVENET
 
-        protected virtual void SwitchInputField(bool active) => m_keyborad.SwitchInputField(active ? this : null);
+        protected virtual void SwitchInputField(bool active)
+        {
+            m_keyborad.SwitchInputField(active ? this : null);
+        }
 
         public virtual void OnFocus(bool active) => SwitchInputField(active);
 

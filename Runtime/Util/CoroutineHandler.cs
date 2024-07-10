@@ -2,53 +2,32 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TLab.InputField
+namespace TLab.VKeyborad
 {
-    public static class Util
+    public class CoroutineHandler : MonoBehaviour
     {
-#if !UNITY_EDITOR && UNITY_WEBGL
-        [System.Runtime.InteropServices.DllImport("__Internal")]
-        private static extern bool IsMobile();
-#endif
+        static protected CoroutineHandler m_instance;
 
-        public static bool mobile => _IsMobile();
-
-        public static bool _IsMobile()
-        {
-#if !UNITY_EDITOR && UNITY_WEBGL
-            return IsMobile();
-#elif UNITY_ANDROID
-            return true;
-#else
-            return false;
-#endif
-        }
-    }
-
-    public class SyncUtility : MonoBehaviour
-    {
-        static protected SyncUtility m_Instance;
-
-        static public SyncUtility instance
+        static public CoroutineHandler instance
         {
             get
             {
-                if (m_Instance == null)
+                if (m_instance == null)
                 {
-                    GameObject o = new GameObject("SyncHandler");
+                    GameObject o = new GameObject("CoroutineHandler");
                     DontDestroyOnLoad(o);
-                    m_Instance = o.AddComponent<SyncUtility>();
+                    m_instance = o.AddComponent<CoroutineHandler>();
                 }
 
-                return m_Instance;
+                return m_instance;
             }
         }
 
         public void OnDisable()
         {
-            if (m_Instance)
+            if (m_instance)
             {
-                Destroy(m_Instance.gameObject);
+                Destroy(m_instance.gameObject);
             }
         }
 
@@ -87,18 +66,6 @@ namespace TLab.InputField
         {
             yield return new WaitForSeconds(delay);
             callback.Invoke();
-        }
-    }
-
-    public static class AudioUtility
-    {
-        public static void ShotAudio(AudioSource audioSource, AudioClip audioClip, float delay)
-        {
-            if (audioSource != null && audioClip != null)
-            {
-                SyncUtility.StartStaticCoroutine(
-                    SyncUtility.AfterSecound(() => { audioSource.PlayOneShot(audioClip, 1.0f); }, delay));
-            }
         }
     }
 }

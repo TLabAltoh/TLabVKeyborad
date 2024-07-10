@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace TLab.InputField.Editor
+namespace TLab.VKeyborad.Editor
 {
     [CustomEditor(typeof(TLabVKeyborad))]
     public class TLabVKeyboradEditor : UnityEditor.Editor
