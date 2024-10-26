@@ -62,10 +62,10 @@ namespace TLab.VKeyborad
 
             if (m_keyborad.mobile)
             {
-                foreach (GameObject hideObject in m_hideObjects)
+                foreach (var hideObject in m_hideObjects)
                     hideObject.SetActive(!active);
 
-                m_keyborad.HideKeyborad(!active);
+                m_keyborad.SetVisibility(active);
             }
 
             AudioHandler.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);

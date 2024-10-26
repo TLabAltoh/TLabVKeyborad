@@ -25,7 +25,7 @@ namespace TLab.VKeyborad
         [SerializeField] private Transform m_anchor;
 
         [Header("Callback")]
-        [SerializeField] private UnityEvent<TLabVKeyborad, bool> m_onHide;
+        [SerializeField] private UnityEvent<TLabVKeyborad, bool> m_onVisibilityChanged;
 
 #if UNITY_EDITOR
         [Header("Keyborad Visual (Editor Only)")]
@@ -73,20 +73,11 @@ namespace TLab.VKeyborad
 
         private string THIS_NAME => "[ " + this.GetType() + "] ";
 
-        public void SwitchInputField(InputFieldBase inputFieldBase)
-        {
-            m_inputFieldBase = inputFieldBase;
-        }
+        public void SwitchInputField(InputFieldBase inputFieldBase) => m_inputFieldBase = inputFieldBase;
 
-        public void OnKeyPress(string key)
-        {
-            m_keyBuffer.Add(key);
-        }
+        public void OnKeyPress(string key) => m_keyBuffer.Add(key);
 
-        public void OnSKeyPress(SKeyCode sKey)
-        {
-            m_sKeyBuffer.Add(sKey);
-        }
+        public void OnSKeyPress(SKeyCode sKey) => m_sKeyBuffer.Add(sKey);
 
         public void SetTransform(Vector3 position, Vector3 target, Vector3 worldUp)
         {
@@ -98,11 +89,11 @@ namespace TLab.VKeyborad
             m_anchor.LookAt(target, worldUp);
         }
 
-        public void HideKeyborad(bool hide)
+        public void SetVisibility(bool active)
         {
-            m_keyBOX.SetActive(!hide);
+            m_keyBOX.SetActive(active);
 
-            if (!hide)    // Show
+            if (active)    // Show
             {
                 if (!m_initialized && m_started)
                 {
@@ -110,7 +101,7 @@ namespace TLab.VKeyborad
                 }
             }
 
-            if (hide)     // Hide
+            if (!active)     // Hide
             {
                 if (m_inputFieldBase != null)
                 {
@@ -118,8 +109,12 @@ namespace TLab.VKeyborad
                 }
             }
 
-            m_onHide.Invoke(this, hide);
+            m_onVisibilityChanged.Invoke(this, active);
         }
+
+        public void Hide(bool active) => SetVisibility(!active);
+
+        public void Show(bool active) => SetVisibility(active);
 
         public void Setup()
         {
@@ -148,7 +143,7 @@ namespace TLab.VKeyborad
             }
             else
             {
-                HideKeyborad(true);
+                SetVisibility(false);
             }
 
             if (m_audioSource == null)
@@ -160,14 +155,10 @@ namespace TLab.VKeyborad
         private void Start()
         {
             if (!m_initialized && m_setupOnStart)
-            {
                 Setup();
-            }
 
             if (m_hideOnStart)
-            {
-                HideKeyborad(true);
-            }
+                SetVisibility(false);
 
             m_started = true;
         }

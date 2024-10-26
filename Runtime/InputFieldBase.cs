@@ -14,6 +14,9 @@ namespace TLab.VKeyborad
         {
             get
             {
+                if (m_keyborad == null)
+                    return false;
+
                 return m_keyborad.inputFieldBase == this;
             }
         }
@@ -38,10 +41,7 @@ namespace TLab.VKeyborad
 
         #region FOUCUS_EVENET
 
-        protected virtual void SwitchInputField(bool active)
-        {
-            m_keyborad.SwitchInputField(active ? this : null);
-        }
+        protected virtual void SwitchInputField(bool active) => m_keyborad?.SwitchInputField(active ? this : null);
 
         public virtual void OnFocus(bool active) => SwitchInputField(active);
 
@@ -51,9 +51,9 @@ namespace TLab.VKeyborad
 
         protected virtual void Start()
         {
-            if (m_activeOnAwake)
+            if (m_activeOnAwake && (m_keyborad != null))
             {
-                m_keyborad.HideKeyborad(false);
+                m_keyborad.SetVisibility(true);
                 m_keyborad.SwitchInputField(this);
             }
         }
