@@ -1,8 +1,7 @@
 using Unity.Profiling;
 using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace TLab.VKeyborad
 {
@@ -22,7 +21,7 @@ namespace TLab.VKeyborad
         private static readonly ProfilerMarker HorizontalLayoutGroupFitPerMarker =
             new ProfilerMarker("[TLAB] HorizontalLayoutGroupFitPerMarker.Fit");
 
-        private void Fit()
+        public void Fit()
         {
             if (m_layoutGroup == null)
             {
@@ -33,7 +32,7 @@ namespace TLab.VKeyborad
             {
                 var rectTransform = (RectTransform)m_layoutGroup.transform;
 
-                var rectTransformWidth = rectTransform.sizeDelta.x;
+                var rectTransformWidth = (rectTransform.parent as RectTransform).sizeDelta.x;
 
                 var childs = new RectTransform[rectTransform.childCount];
 
@@ -78,9 +77,7 @@ namespace TLab.VKeyborad
         protected override void Reset()
         {
             if (m_layoutGroup == null)
-            {
                 m_layoutGroup = GetComponent<HorizontalLayoutGroup>();
-            }
         }
 #endif
 
