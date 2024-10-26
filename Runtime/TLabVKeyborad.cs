@@ -95,7 +95,7 @@ namespace TLab.VKeyborad
 
             if (active)    // Show
             {
-                if (!m_initialized && m_started)
+                if (m_started && !m_initialized)
                 {
                     Setup();
                 }
