@@ -36,7 +36,7 @@ namespace TLab.VKeyborad
             AfterOnEnterPressed();
         }
 
-        public virtual void AfterOnEnterPressed() => m_onEnterPressed.Invoke();
+        protected virtual void AfterOnEnterPressed() => m_onEnterPressed.Invoke();
 
         public virtual void OnTabPressed()
         {
@@ -44,10 +44,10 @@ namespace TLab.VKeyborad
 
             AfterOnTabPressed();
         }
-        public virtual void AfterOnTabPressed() => m_onTabPressed.Invoke();
+        protected virtual void AfterOnTabPressed() => m_onTabPressed.Invoke();
 
         public virtual void OnShiftPressed() => AfterOnShiftPressed();
-        public virtual void AfterOnShiftPressed() => m_onShiftPressed.Invoke();
+        protected virtual void AfterOnShiftPressed() => m_onShiftPressed.Invoke();
 
         public virtual void OnSpacePressed()
         {
@@ -55,13 +55,13 @@ namespace TLab.VKeyborad
 
             AfterOnSpacePressed();
         }
-        public virtual void AfterOnSpacePressed() => m_onSpacePressed.Invoke();
+        protected virtual void AfterOnSpacePressed() => m_onSpacePressed.Invoke();
 
         public virtual void OnBackSpacePressed() => AfterOnBackSpacePressed();
-        public virtual void AfterOnBackSpacePressed() => m_onBackSpacePressed.Invoke();
+        protected virtual void AfterOnBackSpacePressed() => m_onBackSpacePressed.Invoke();
 
         public virtual void OnSymbolPressed() => AfterOnSymbolPressed();
-        public virtual void AfterOnSymbolPressed() => m_onSymbolPressed.Invoke();
+        protected virtual void AfterOnSymbolPressed() => m_onSymbolPressed.Invoke();
 
         public virtual void OnKeyPressed(string input)
         {
