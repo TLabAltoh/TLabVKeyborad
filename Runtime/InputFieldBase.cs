@@ -62,7 +62,7 @@ namespace TLab.VKeyborad
                     m_keyborad.SwitchInputField(this);
 
                     if (prev != null)
-                        prev.m_onFocus.Invoke(false);
+                        prev.OnInputFieldSwitched(false);
                 }
             }
             else
@@ -71,6 +71,8 @@ namespace TLab.VKeyborad
                     m_keyborad.SwitchInputField(null);
             }
         }
+
+        protected virtual void OnInputFieldSwitched(bool active) => m_onFocus.Invoke(active);
 
         public virtual void OnFocus(bool active)
         {

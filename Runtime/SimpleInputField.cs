@@ -68,6 +68,12 @@ namespace TLab.VKeyborad
             m_onFocus.Invoke(active);
         }
 
+        protected override void OnInputFieldSwitched(bool active)
+        {
+            m_focusButton.enabled = !active;
+            base.OnInputFieldSwitched(active);
+        }
+
         #endregion FOUCUS_EVENET
 
         protected void SwitchPlaseholder()
