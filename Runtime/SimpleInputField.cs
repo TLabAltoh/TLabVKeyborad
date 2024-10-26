@@ -52,10 +52,10 @@ namespace TLab.VKeyborad
 
             m_focusButton.enabled = !active;
 
-            var hide = !inputFieldIsActive;
+            var show = inputFieldIsActive;
 
             if (m_keyborad.mobile)
-                m_keyborad.HideKeyborad(hide);
+                m_keyborad.SetVisibility(show);
 
             OnFocusAudio();
         }
@@ -64,10 +64,10 @@ namespace TLab.VKeyborad
         {
             base.OnFocus();
 
-            var hide = !inputFieldIsActive;
+            var show = inputFieldIsActive;
 
             if (m_keyborad.mobile)
-                m_keyborad.HideKeyborad(hide);
+                m_keyborad.SetVisibility(show);
 
             OnFocusAudio();
         }
