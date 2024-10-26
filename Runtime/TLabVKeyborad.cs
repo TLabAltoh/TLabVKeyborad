@@ -67,7 +67,7 @@ namespace TLab.VKeyborad
 
         public bool initialized => m_initialized;
 
-        public bool isActive => m_keyBOX.activeSelf;
+        public bool isVisible => m_keyBOX.activeSelf;
 
         public InputFieldBase inputFieldBase => m_inputFieldBase;
 
