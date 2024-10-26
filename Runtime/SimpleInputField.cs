@@ -28,27 +28,6 @@ namespace TLab.VKeyborad
             AfterOnBackSpacePressed();
         }
 
-        public override void OnSpacePressed()
-        {
-            AddKey(" ");
-
-            AfterOnSpacePressed();
-        }
-
-        public override void OnTabPressed()
-        {
-            AddKey("    ");
-
-            AfterOnTabPressed();
-        }
-
-        public override void OnKeyPressed(string input)
-        {
-            AddKey(input);
-
-            AfterOnKeyPressed(input);
-        }
-
         #endregion KEY_EVENT
 
         #region FOUCUS_EVENET

@@ -31,16 +31,30 @@ namespace TLab.VKeyborad
 
         #region KEY_EVENT
 
-        public virtual void OnEnterPressed() => AfterOnEnterPressed();
+        public virtual void OnEnterPressed()
+        {
+            AfterOnEnterPressed();
+        }
+
         public virtual void AfterOnEnterPressed() => m_onEnterPressed.Invoke();
 
-        public virtual void OnTabPressed() => AfterOnTabPressed();
+        public virtual void OnTabPressed()
+        {
+            AddKey("    ");
+
+            AfterOnTabPressed();
+        }
         public virtual void AfterOnTabPressed() => m_onTabPressed.Invoke();
 
         public virtual void OnShiftPressed() => AfterOnShiftPressed();
         public virtual void AfterOnShiftPressed() => m_onShiftPressed.Invoke();
 
-        public virtual void OnSpacePressed() => AfterOnSpacePressed();
+        public virtual void OnSpacePressed()
+        {
+            AddKey(" ");
+
+            AfterOnSpacePressed();
+        }
         public virtual void AfterOnSpacePressed() => m_onSpacePressed.Invoke();
 
         public virtual void OnBackSpacePressed() => AfterOnBackSpacePressed();
@@ -49,7 +63,12 @@ namespace TLab.VKeyborad
         public virtual void OnSymbolPressed() => AfterOnSymbolPressed();
         public virtual void AfterOnSymbolPressed() => m_onSymbolPressed.Invoke();
 
-        public virtual void OnKeyPressed(string input) => AfterOnKeyPressed(input);
+        public virtual void OnKeyPressed(string input)
+        {
+            AddKey(input);
+
+            AfterOnKeyPressed(input);
+        }
         public virtual void AfterOnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
 
         public virtual void AddKey(string input) { }
