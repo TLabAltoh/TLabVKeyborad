@@ -11,15 +11,8 @@ namespace TLab.VKeyborad
         [SerializeField] private TextMeshProUGUI m_inputText;
         [SerializeField] private TextMeshProUGUI m_placeholder;
 
-        [Header("Image")]
-        [SerializeField] private GameObject m_openImage;
-        [SerializeField] private GameObject m_lockImage;
-
         [Header("Button")]
         [SerializeField] private Button m_focusButton;
-
-        [Header("HideObject")]
-        [SerializeField] private GameObject[] m_hideObjects;
 
         [Header("Audio")]
         [SerializeField] private AudioClip m_lockKeyborad;
@@ -39,13 +32,30 @@ namespace TLab.VKeyborad
                 text = text.Remove(text.Length - 1);
                 Display();
             }
+
+            base.OnBackSpacePressed();
         }
 
-        public override void OnSpacePressed() => AddKey(" ");
+        public override void OnSpacePressed()
+        {
+            AddKey(" ");
 
-        public override void OnTabPressed() => AddKey("    ");
+            base.OnSpacePressed();
+        }
 
-        public override void OnKeyPressed(string input) => AddKey(input);
+        public override void OnTabPressed()
+        {
+            AddKey("    ");
+
+            base.OnTabPressed();
+        }
+
+        public override void OnKeyPressed(string input)
+        {
+            AddKey(input);
+
+            base.OnKeyPressed(input);
+        }
 
         #endregion KEY_EVENT
 
@@ -53,22 +63,16 @@ namespace TLab.VKeyborad
 
         public override void OnFocus(bool active)
         {
-            base.OnFocus(active);
-
-            m_openImage.SetActive(active);
-            m_lockImage.SetActive(!active);
+            SwitchInputField(active);
 
             m_focusButton.enabled = !active;
 
             if (m_keyborad.mobile)
-            {
-                foreach (var hideObject in m_hideObjects)
-                    hideObject.SetActive(!active);
-
                 m_keyborad.SetVisibility(active);
-            }
 
             AudioHandler.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
+
+            m_onFocus.Invoke(active);
         }
 
         #endregion FOUCUS_EVENET

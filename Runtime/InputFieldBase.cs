@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace TLab.VKeyborad
 {
@@ -9,6 +10,16 @@ namespace TLab.VKeyborad
 
         [Header("Option")]
         [SerializeField] protected bool m_activeOnAwake = false;
+
+        [Header("Event")]
+        [SerializeField] protected UnityEvent<bool> m_onFocus;
+        [SerializeField] protected UnityEvent m_onEnterPressed;
+        [SerializeField] protected UnityEvent m_onTabPressed;
+        [SerializeField] protected UnityEvent m_onShiftPressed;
+        [SerializeField] protected UnityEvent m_onSpacePressed;
+        [SerializeField] protected UnityEvent m_onBackSpacePressed;
+        [SerializeField] protected UnityEvent m_onSymbolPressed;
+        [SerializeField] protected UnityEvent<string> m_onKeyPressed;
 
         public bool inputFieldIsActive
         {
@@ -23,19 +34,19 @@ namespace TLab.VKeyborad
 
         #region KEY_EVENT
 
-        public virtual void OnBackSpacePressed() { }
+        public virtual void OnEnterPressed() => m_onEnterPressed.Invoke();
 
-        public virtual void OnEnterPressed() { }
+        public virtual void OnTabPressed() => m_onTabPressed.Invoke();
 
-        public virtual void OnSpacePressed() { }
+        public virtual void OnShiftPressed() => m_onShiftPressed.Invoke();
 
-        public virtual void OnTabPressed() { }
+        public virtual void OnSpacePressed() => m_onSpacePressed.Invoke();
 
-        public virtual void OnShiftPressed() { }
+        public virtual void OnBackSpacePressed() => m_onBackSpacePressed.Invoke();
 
-        public virtual void OnSymbolPressed() { }
+        public virtual void OnSymbolPressed() => m_onSymbolPressed.Invoke();
 
-        public virtual void OnKeyPressed(string input) { }
+        public virtual void OnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
 
         #endregion KEY_EVENT
 
@@ -43,9 +54,19 @@ namespace TLab.VKeyborad
 
         protected virtual void SwitchInputField(bool active) => m_keyborad?.SwitchInputField(active ? this : null);
 
-        public virtual void OnFocus(bool active) => SwitchInputField(active);
+        public virtual void OnFocus(bool active)
+        {
+            SwitchInputField(active);
 
-        public virtual void OnFocus() => SwitchInputField(!inputFieldIsActive);
+            m_onFocus.Invoke(active);
+        }
+
+        public virtual void OnFocus()
+        {
+            SwitchInputField(!inputFieldIsActive);
+
+            m_onFocus.Invoke(true);
+        }
 
         #endregion FOUCUS_EVENT
 

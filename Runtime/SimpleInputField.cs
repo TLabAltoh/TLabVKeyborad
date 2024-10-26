@@ -32,13 +32,30 @@ namespace TLab.VKeyborad
                 text = text.Remove(text.Length - 1);
                 Display();
             }
+
+            base.OnBackSpacePressed();
         }
 
-        public override void OnSpacePressed() => AddKey(" ");
+        public override void OnSpacePressed()
+        {
+            AddKey(" ");
 
-        public override void OnTabPressed() => AddKey("    ");
+            base.OnSpacePressed();
+        }
 
-        public override void OnKeyPressed(string input) => AddKey(input);
+        public override void OnTabPressed()
+        {
+            AddKey("    ");
+
+            base.OnTabPressed();
+        }
+
+        public override void OnKeyPressed(string input)
+        {
+            AddKey(input);
+
+            base.OnKeyPressed(input);
+        }
 
         #endregion KEY_EVENT
 
@@ -48,7 +65,7 @@ namespace TLab.VKeyborad
 
         public override void OnFocus(bool active)
         {
-            base.OnFocus(active);
+            SwitchInputField(active);
 
             m_focusButton.enabled = !active;
 
@@ -58,11 +75,13 @@ namespace TLab.VKeyborad
                 m_keyborad.SetVisibility(show);
 
             OnFocusAudio();
+
+            m_onFocus.Invoke(active);
         }
 
         public override void OnFocus()
         {
-            base.OnFocus();
+            SwitchInputField(!inputFieldIsActive);
 
             var show = inputFieldIsActive;
 
@@ -70,6 +89,8 @@ namespace TLab.VKeyborad
                 m_keyborad.SetVisibility(show);
 
             OnFocusAudio();
+
+            m_onFocus.Invoke(show);
         }
 
         #endregion FOUCUS_EVENET
