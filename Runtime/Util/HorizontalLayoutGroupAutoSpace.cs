@@ -51,10 +51,15 @@ namespace TLab.VKeyborad
                     return;
                 }
 
+#if UNITY_EDITOR
+                var prev = m_layoutGroup.spacing;
+#endif
+
                 m_layoutGroup.spacing = (rectTransformWidth - childsRectTransformWidth) / (childs.Length - 1);
 
 #if UNITY_EDITOR
-                UnityEditor.EditorUtility.SetDirty(m_layoutGroup);
+                if (!Application.isPlaying && (prev != m_layoutGroup.spacing))
+                    UnityEditor.EditorUtility.SetDirty(m_layoutGroup);
 #endif
             }
         }
