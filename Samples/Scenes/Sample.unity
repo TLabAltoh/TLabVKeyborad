@@ -1138,10 +1138,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4734468813570560127, guid: 38285747716ff59419a495b709b12c5c, type: 3}
-      propertyPath: m_Name
-      value: InputField
-      objectReference: {fileID: 0}
     - target: {fileID: 4830018069829583180, guid: 38285747716ff59419a495b709b12c5c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -1445,14 +1441,14 @@ PrefabInstance:
     - target: {fileID: 6766067581760257661, guid: 38285747716ff59419a495b709b12c5c, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000969386506952418, guid: 38285747716ff59419a495b709b12c5c, type: 3}
-      propertyPath: m_Spacing
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7080640460636786048, guid: 38285747716ff59419a495b709b12c5c, type: 3}
       propertyPath: m_Name
       value: Keyborad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080640460636786048, guid: 38285747716ff59419a495b709b12c5c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7145170350818974611, guid: 38285747716ff59419a495b709b12c5c, type: 3}
       propertyPath: m_AnchorMax.y
