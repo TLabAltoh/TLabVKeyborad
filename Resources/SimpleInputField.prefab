@@ -257,8 +257,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 948701867960106899}
-        m_TargetAssemblyTypeName: TLab.InputField.SimpleInputField, Assembly-CSharp
-        m_MethodName: OnFocus
+        m_TargetAssemblyTypeName: TLab.VKeyborad.InputFieldBase, TLabVKeyborad.Runtime
+        m_MethodName: OnSwitchFocus
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -631,6 +631,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_keyborad: {fileID: 0}
   m_activeOnAwake: 0
+  m_onFocus:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onEnterPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onTabPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onShiftPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onSpacePressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onBackSpacePressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onSymbolPressed:
+    m_PersistentCalls:
+      m_Calls: []
+  m_onKeyPressed:
+    m_PersistentCalls:
+      m_Calls: []
   m_inputText: {fileID: 304338269269483945}
   m_placeholder: {fileID: 2726304268257824391}
   m_focusButton: {fileID: 8987680362804463765}

@@ -4,22 +4,14 @@ using TMPro;
 
 namespace TLab.VKeyborad
 {
-    [RequireComponent(typeof(AudioSource))]
     public class SimpleInputField : InputFieldBase
     {
         [Header("Text (TMPro)")]
-        [SerializeField] private TextMeshProUGUI m_inputText;
-        [SerializeField] private TextMeshProUGUI m_placeholder;
+        [SerializeField] protected TextMeshProUGUI m_inputText;
+        [SerializeField] protected TextMeshProUGUI m_placeholder;
 
         [Header("Button")]
-        [SerializeField] private Button m_focusButton;
-
-        [Header("Audio")]
-        [SerializeField] private AudioClip m_lockKeyborad;
-
-        private const float IMMEDIATELY = 0f;
-
-        private AudioSource m_audioSource;
+        [SerializeField] protected Button m_focusButton;
 
         [System.NonSerialized] public string text = "";
 
@@ -61,41 +53,24 @@ namespace TLab.VKeyborad
 
         #region FOUCUS_EVENET
 
-        private void OnFocusAudio() => AudioHandler.ShotAudio(m_audioSource, m_lockKeyborad, IMMEDIATELY);
-
         public override void OnFocus(bool active)
         {
+            if (active == inputFieldIsActive)
+                return;
+
             SwitchInputField(active);
 
             m_focusButton.enabled = !active;
 
-            var show = inputFieldIsActive;
-
             if (m_keyborad.mobile)
-                m_keyborad.SetVisibility(show);
-
-            OnFocusAudio();
+                m_keyborad.SetVisibility(active);
 
             m_onFocus.Invoke(active);
         }
 
-        public override void OnFocus()
-        {
-            SwitchInputField(!inputFieldIsActive);
-
-            var show = inputFieldIsActive;
-
-            if (m_keyborad.mobile)
-                m_keyborad.SetVisibility(show);
-
-            OnFocusAudio();
-
-            m_onFocus.Invoke(show);
-        }
-
         #endregion FOUCUS_EVENET
 
-        private void SwitchPlaseholder()
+        protected void SwitchPlaseholder()
         {
             var color = m_placeholder.color;
 
@@ -118,7 +93,7 @@ namespace TLab.VKeyborad
             SwitchPlaseholder();
         }
 
-        public void AddKey(string key)
+        public override void AddKey(string key)
         {
             text += key;
             Display();
@@ -138,9 +113,6 @@ namespace TLab.VKeyborad
             text = m_inputText.text;
 
             SwitchPlaseholder();
-
-            if (m_audioSource == null)
-                m_audioSource = GetComponent<AudioSource>();
         }
     }
 }
