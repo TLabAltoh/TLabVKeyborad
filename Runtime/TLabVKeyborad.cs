@@ -25,7 +25,7 @@ namespace TLab.VKeyborad
         [SerializeField] private Transform m_anchor;
 
         [Header("Callback")]
-        [SerializeField] private UnityEvent<TLabVKeyborad, bool> m_onVisibilityChanged;
+        [SerializeField] private UnityEvent<bool> m_onVisibilityChanged;
 
 #if UNITY_EDITOR
         [Header("Keyborad Visual (Editor Only)")]
@@ -109,7 +109,7 @@ namespace TLab.VKeyborad
                 }
             }
 
-            m_onVisibilityChanged.Invoke(this, active);
+            m_onVisibilityChanged.Invoke(active);
         }
 
         public void Hide(bool active) => SetVisibility(!active);
