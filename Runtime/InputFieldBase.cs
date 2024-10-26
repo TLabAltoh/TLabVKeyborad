@@ -31,19 +31,26 @@ namespace TLab.VKeyborad
 
         #region KEY_EVENT
 
-        public virtual void OnEnterPressed() => m_onEnterPressed.Invoke();
+        public virtual void OnEnterPressed() => AfterOnEnterPressed();
+        public virtual void AfterOnEnterPressed() => m_onEnterPressed.Invoke();
 
-        public virtual void OnTabPressed() => m_onTabPressed.Invoke();
+        public virtual void OnTabPressed() => AfterOnTabPressed();
+        public virtual void AfterOnTabPressed() => m_onTabPressed.Invoke();
 
-        public virtual void OnShiftPressed() => m_onShiftPressed.Invoke();
+        public virtual void OnShiftPressed() => AfterOnShiftPressed();
+        public virtual void AfterOnShiftPressed() => m_onShiftPressed.Invoke();
 
-        public virtual void OnSpacePressed() => m_onSpacePressed.Invoke();
+        public virtual void OnSpacePressed() => AfterOnSpacePressed();
+        public virtual void AfterOnSpacePressed() => m_onSpacePressed.Invoke();
 
-        public virtual void OnBackSpacePressed() => m_onBackSpacePressed.Invoke();
+        public virtual void OnBackSpacePressed() => AfterOnBackSpacePressed();
+        public virtual void AfterOnBackSpacePressed() => m_onBackSpacePressed.Invoke();
 
-        public virtual void OnSymbolPressed() => m_onSymbolPressed.Invoke();
+        public virtual void OnSymbolPressed() => AfterOnSymbolPressed();
+        public virtual void AfterOnSymbolPressed() => m_onSymbolPressed.Invoke();
 
-        public virtual void OnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
+        public virtual void OnKeyPressed(string input) => AfterOnKeyPressed(input);
+        public virtual void AfterOnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
 
         public virtual void AddKey(string input) { }
 
@@ -62,7 +69,7 @@ namespace TLab.VKeyborad
                     m_keyborad.SwitchInputField(this);
 
                     if (prev != null)
-                        prev.m_onFocus.Invoke(false);
+                        prev.AfterOnFocus(false);
                 }
             }
             else
@@ -71,6 +78,8 @@ namespace TLab.VKeyborad
                     m_keyborad.SwitchInputField(null);
             }
         }
+
+        protected virtual void AfterOnFocus(bool active) => m_onFocus.Invoke(active);
 
         public virtual void OnFocus(bool active)
         {

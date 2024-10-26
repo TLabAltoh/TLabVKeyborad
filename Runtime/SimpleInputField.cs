@@ -25,28 +25,28 @@ namespace TLab.VKeyborad
                 Display();
             }
 
-            base.OnBackSpacePressed();
+            AfterOnBackSpacePressed();
         }
 
         public override void OnSpacePressed()
         {
             AddKey(" ");
 
-            base.OnSpacePressed();
+            AfterOnSpacePressed();
         }
 
         public override void OnTabPressed()
         {
             AddKey("    ");
 
-            base.OnTabPressed();
+            AfterOnTabPressed();
         }
 
         public override void OnKeyPressed(string input)
         {
             AddKey(input);
 
-            base.OnKeyPressed(input);
+            AfterOnKeyPressed(input);
         }
 
         #endregion KEY_EVENT
@@ -55,17 +55,16 @@ namespace TLab.VKeyborad
 
         public override void OnFocus(bool active)
         {
-            if (active == inputFieldIsActive)
-                return;
+            base.OnFocus(active);
 
-            SwitchInputField(active);
+            AfterOnFocus(active);
+        }
 
+        protected override void AfterOnFocus(bool active)
+        {
             m_focusButton.enabled = !active;
 
-            if (m_keyborad.mobile)
-                m_keyborad.SetVisibility(active);
-
-            m_onFocus.Invoke(active);
+            base.AfterOnFocus(active);
         }
 
         #endregion FOUCUS_EVENET
