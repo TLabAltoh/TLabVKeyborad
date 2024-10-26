@@ -21,15 +21,12 @@ namespace TLab.VKeyborad
         [SerializeField] protected UnityEvent m_onSymbolPressed;
         [SerializeField] protected UnityEvent<string> m_onKeyPressed;
 
-        public bool inputFieldIsActive
-        {
-            get
-            {
-                if (m_keyborad == null)
-                    return false;
+        public bool inputFieldIsActive => m_keyborad.inputFieldBase == this;
 
-                return m_keyborad.inputFieldBase == this;
-            }
+        public TLabVKeyborad keyborad
+        {
+            get => m_keyborad;
+            set => m_keyborad = value;
         }
 
         #region KEY_EVENT
@@ -48,34 +45,60 @@ namespace TLab.VKeyborad
 
         public virtual void OnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
 
+        public virtual void AddKey(string input) { }
+
         #endregion KEY_EVENT
 
         #region FOUCUS_EVENET
 
-        protected virtual void SwitchInputField(bool active) => m_keyborad?.SwitchInputField(active ? this : null);
+        protected virtual void SwitchInputField(bool active)
+        {
+            if (m_keyborad.inputFieldBase != this)
+            {
+                if (active)
+                {
+                    var prev = m_keyborad.inputFieldBase;
+
+                    m_keyborad.SwitchInputField(this);
+
+                    if (prev != null)
+                        prev.m_onFocus.Invoke(false);
+                }
+            }
+            else
+            {
+                if (!active)
+                    m_keyborad.SwitchInputField(null);
+            }
+        }
 
         public virtual void OnFocus(bool active)
         {
+            if (active == inputFieldIsActive)
+                return;
+
             SwitchInputField(active);
+
+            if (m_keyborad.mobile)
+                m_keyborad.SetVisibility(active);
 
             m_onFocus.Invoke(active);
         }
 
-        public virtual void OnFocus()
-        {
-            SwitchInputField(!inputFieldIsActive);
+        public virtual void OnFocus() => OnFocus(true);
 
-            m_onFocus.Invoke(true);
-        }
+        public virtual void OnSwitchFocus() => OnFocus(!inputFieldIsActive);
 
         #endregion FOUCUS_EVENT
 
         protected virtual void Start()
         {
-            if (m_activeOnAwake && (m_keyborad != null))
+            if (m_activeOnAwake)
             {
-                m_keyborad.SetVisibility(true);
-                m_keyborad.SwitchInputField(this);
+                SwitchInputField(true);
+
+                if (m_keyborad.mobile)
+                    m_keyborad.SetVisibility(true);
             }
         }
 
