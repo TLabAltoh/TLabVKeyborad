@@ -11769,7 +11769,6 @@ MonoBehaviour:
   m_inputText: {fileID: 2427026501612935423}
   m_placeholder: {fileID: 18712571303950289}
   m_focusButton: {fileID: 6425820960652440003}
-  m_lockKeyborad: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
 --- !u!1 &4740083426634351893
 GameObject:
   m_ObjectHideFlags: 0
