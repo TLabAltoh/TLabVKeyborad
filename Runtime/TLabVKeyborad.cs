@@ -91,6 +91,9 @@ namespace TLab.VKeyborad
 
         public void SetVisibility(bool active)
         {
+            if (active == isVisible)
+                return;
+
             m_keyBOX.SetActive(active);
 
             if (active)    // Show
