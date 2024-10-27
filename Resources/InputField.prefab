@@ -18106,7 +18106,6 @@ MonoBehaviour:
   m_symbolBOX: {fileID: 6014961633439098267}
   m_operatorBOX: {fileID: 4108242326666228828}
   m_hideOnStart: 1
-  m_setupOnStart: 1
   m_anchor: {fileID: 0}
   m_onVisibilityChanged:
     m_PersistentCalls:

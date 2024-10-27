@@ -122,12 +122,7 @@ namespace TLab.VKeyborad
         protected virtual void Start()
         {
             if (m_activeOnAwake)
-            {
                 SwitchInputField(true);
-
-                if (m_keyborad.mobile)
-                    m_keyborad.SetVisibility(true);
-            }
         }
 
         protected virtual void Update() { }

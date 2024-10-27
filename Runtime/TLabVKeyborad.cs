@@ -19,7 +19,6 @@ namespace TLab.VKeyborad
 
         [Header("Settings")]
         [SerializeField] private bool m_hideOnStart = false;
-        [SerializeField] private bool m_setupOnStart = false;
 
         [Header("Transform Anchor")]
         [SerializeField] private Transform m_anchor;
@@ -41,7 +40,6 @@ namespace TLab.VKeyborad
 
         private bool m_mobile = false;
         private bool m_shift = false;
-        private bool m_started = false;
         private bool m_initialized = false;
 
         private float m_inertia = 0.0f;
@@ -96,30 +94,16 @@ namespace TLab.VKeyborad
 
             m_keyBOX.SetActive(active);
 
-            if (active)    // Show
-            {
-                if (m_started && !m_initialized)
-                {
-                    Setup();
-                }
-            }
-
-            if (!active)     // Hide
-            {
-                if (m_inputFieldBase != null)
-                {
-                    m_inputFieldBase = null;
-                }
-            }
-
             m_onVisibilityChanged.Invoke(active);
         }
+
+        public void SwitchVisibility() => SetVisibility(!isVisible);
 
         public void Hide(bool active) => SetVisibility(!active);
 
         public void Show(bool active) => SetVisibility(active);
 
-        public void Setup()
+        public void SetUp()
         {
             if (m_initialized)
             {
@@ -157,13 +141,11 @@ namespace TLab.VKeyborad
 
         private void Start()
         {
-            if (!m_initialized && m_setupOnStart)
-                Setup();
+            if (!m_initialized)
+                SetUp();
 
             if (m_hideOnStart)
                 SetVisibility(false);
-
-            m_started = true;
         }
 
         private void Update()
