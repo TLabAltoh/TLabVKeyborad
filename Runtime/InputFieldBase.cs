@@ -77,7 +77,7 @@ namespace TLab.VKeyborad
 
         #region FOUCUS_EVENET
 
-        protected virtual void SwitchInputField(bool active)
+        public virtual void SwitchInputField(bool active)
         {
             if (m_keyborad.inputFieldBase != this)
             {
