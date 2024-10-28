@@ -1,30 +1,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Events;
 
 namespace TLab.VKeyborad
 {
     [RequireComponent(typeof(AudioSource))]
-    public class TLabVKeyborad : MonoBehaviour
+    public class TLabVKeyborad : VKeyboradBase
     {
-        [Header("Key Audio")]
+        [Header("Audio")]
         [SerializeField] private AudioClip m_keyStroke;
 
-        [Header("Key BOX")]
+        [Header("Key")]
         [SerializeField] private GameObject m_keyBOX;
-        [SerializeField] private GameObject m_romajiBOX;
-        [SerializeField] private GameObject m_symbolBOX;
-        [SerializeField] private GameObject m_operatorBOX;
+        [SerializeField] private GameObject m_layer0;
+        [SerializeField] private GameObject m_layer1;
+        [SerializeField] private GameObject m_LayerS;
 
-        [Header("Settings")]
+        [Header("Options")]
         [SerializeField] private bool m_hideOnStart = false;
 
         [Header("Transform Anchor")]
         [SerializeField] private Transform m_anchor;
-
-        [Header("Callback")]
-        [SerializeField] private UnityEvent<bool> m_onVisibilityChanged;
 
 #if UNITY_EDITOR
         [Header("Keyborad Visual (Editor Only)")]
@@ -35,12 +31,7 @@ namespace TLab.VKeyborad
         public ColorBlock m_keyColorBlock;
 #endif
 
-        [SerializeField, HideInInspector]
-        private InputFieldBase m_inputFieldBase;
-
-        private bool m_mobile = false;
         private bool m_shift = false;
-        private bool m_initialized = false;
 
         private float m_inertia = 0.0f;
 
@@ -52,26 +43,11 @@ namespace TLab.VKeyborad
         private const float IMMEDIATELY = 0f;
         private const float INERTIA = 0.1f;
 
-        public bool mobile
-        {
-            get
-            {
-                m_mobile = Platform.mobile;
-                return m_mobile;
-            }
-        }
-
         public bool shift => m_shift;
 
-        public bool initialized => m_initialized;
-
-        public bool isVisible => m_keyBOX.activeSelf;
-
-        public InputFieldBase inputFieldBase => m_inputFieldBase;
+        public override bool isVisible => m_keyBOX.activeSelf;
 
         private string THIS_NAME => "[ " + this.GetType() + "] ";
-
-        public void SwitchInputField(InputFieldBase inputFieldBase) => m_inputFieldBase = inputFieldBase;
 
         public void OnKeyPress(string key) => m_keyBuffer.Add(key);
 
@@ -87,7 +63,7 @@ namespace TLab.VKeyborad
             m_anchor.LookAt(target, worldUp);
         }
 
-        public void SetVisibility(bool active)
+        public override void SetVisibility(bool active)
         {
             if (active == isVisible)
                 return;
@@ -97,13 +73,7 @@ namespace TLab.VKeyborad
             m_onVisibilityChanged.Invoke(active);
         }
 
-        public void SwitchVisibility() => SetVisibility(!isVisible);
-
-        public void Hide(bool active) => SetVisibility(!active);
-
-        public void Show(bool active) => SetVisibility(active);
-
-        public void SetUp()
+        public override void SetUp()
         {
             if (m_initialized)
             {
@@ -115,18 +85,8 @@ namespace TLab.VKeyborad
 
             if (m_mobile)
             {
-                // Can refer to a parent hierarchy if it is inactive but active itself ?
-
-                m_operatorBOX.SetActive(true);
-                m_romajiBOX.SetActive(true);
-                m_symbolBOX.SetActive(true);
-
-                foreach (var key in KeyBase.Keys(m_keyBOX))
+                foreach (var key in KeyBase.Keys(m_keyBOX, true))
                     key.keyborad = this;
-
-                m_operatorBOX.SetActive(true);
-                m_romajiBOX.SetActive(true);
-                m_symbolBOX.SetActive(false);
             }
             else
             {
@@ -139,10 +99,9 @@ namespace TLab.VKeyborad
             m_initialized = true;
         }
 
-        private void Start()
+        protected override void Start()
         {
-            if (!m_initialized)
-                SetUp();
+            base.Start();
 
             if (m_hideOnStart)
                 SetVisibility(false);
@@ -170,7 +129,7 @@ namespace TLab.VKeyborad
                         case SKeyCode.SHIFT:
                             m_shift = !m_shift;
 
-                            foreach (var key in KeyBase.Keys(m_keyBOX))
+                            foreach (var key in KeyBase.Keys(m_keyBOX, false))
                                 key.OnShift();
 
                             m_inputFieldBase?.OnShiftPressed();
@@ -180,12 +139,6 @@ namespace TLab.VKeyborad
                             break;
                         case SKeyCode.TAB:
                             m_inputFieldBase?.OnTabPressed();
-                            break;
-                        case SKeyCode.SYMBOL:
-                            bool active = m_romajiBOX.activeSelf;
-                            m_romajiBOX.SetActive(!active);
-                            m_symbolBOX.SetActive(active);
-                            m_inputFieldBase?.OnSymbolPressed();
                             break;
                     }
 
@@ -239,6 +192,15 @@ namespace TLab.VKeyborad
             }
         }
 
+        public void SwitchLayer()
+        {
+            var active = m_layer0.activeSelf;
+            m_layer0.SetActive(!active);
+            m_layer1.SetActive(active);
+
+            AudioHandler.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
+        }
+
 #if UNITY_EDITOR
         public void Attach<T, K>(GameObject root) where T : Component where K : Component
         {
@@ -254,32 +216,20 @@ namespace TLab.VKeyborad
 
         public void SetUpKey()
         {
-            m_romajiBOX.SetActive(true);
-            m_symbolBOX.SetActive(true);
-            m_operatorBOX.SetActive(true);
+            Attach<Key, Button>(m_layer0);
+            Attach<Key, Button>(m_layer1);
+            Attach<SKey, Button>(m_LayerS);
 
-            Attach<Key, Button>(m_romajiBOX);
-            Attach<Key, Button>(m_symbolBOX);
-            Attach<SKey, Button>(m_operatorBOX);
-
-            foreach (var key in KeyBase.Keys(m_keyBOX))
+            foreach (var key in KeyBase.Keys(m_keyBOX, true))
             {
-                key.Setup();
+                key.SetUp();
                 UnityEditor.EditorUtility.SetDirty(key);
             }
-
-            m_romajiBOX.SetActive(true);
-            m_symbolBOX.SetActive(false);
-            m_operatorBOX.SetActive(true);
         }
 
         public void SetUpKeyVisual()
         {
-            m_romajiBOX.SetActive(true);
-            m_symbolBOX.SetActive(true);
-            m_operatorBOX.SetActive(true);
-
-            foreach (var key in KeyBase.Keys(m_keyBOX))
+            foreach (var key in KeyBase.Keys(m_keyBOX, true))
             {
                 var button = key.GetComponent<Button>();
                 button.colors = m_keyColorBlock;
@@ -292,10 +242,6 @@ namespace TLab.VKeyborad
                 UnityEditor.EditorUtility.SetDirty(image);
                 UnityEditor.EditorUtility.SetDirty(button);
             }
-
-            m_romajiBOX.SetActive(true);
-            m_symbolBOX.SetActive(false);
-            m_operatorBOX.SetActive(true);
         }
 #endif
     }

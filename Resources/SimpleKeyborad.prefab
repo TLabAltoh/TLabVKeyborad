@@ -324,7 +324,7 @@ GameObject:
   - component: {fileID: 8035639925135710710}
   - component: {fileID: 1105635673489724008}
   m_Layer: 5
-  m_Name: Romaji
+  m_Name: Layer0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 7831216853856749717}
   - component: {fileID: 5976462499466438019}
   m_Layer: 5
-  m_Name: Symbols
+  m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1787,7 +1787,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 8750032277653637769}
   m_upperDisp: {fileID: 8750032277653637769}
   keyborad: {fileID: 0}
-  m_sKey: 4
+  m_sKey: 3
 --- !u!1 &1266251302266495796
 GameObject:
   m_ObjectHideFlags: 0
@@ -11913,7 +11913,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 7721451043856350909}
   m_upperDisp: {fileID: 7721451043856350909}
   keyborad: {fileID: 0}
-  m_sKey: 3
+  m_sKey: 2
 --- !u!1 &5338346808358264209
 GameObject:
   m_ObjectHideFlags: 0
@@ -12067,7 +12067,6 @@ GameObject:
   - component: {fileID: 6449330247226418077}
   - component: {fileID: 1994573971845168097}
   - component: {fileID: 8300781229746968956}
-  - component: {fileID: 4179015698142912856}
   m_Layer: 5
   m_Name: SYMBOL
   m_TagString: Untagged
@@ -12177,23 +12176,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1994573971845168097}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4179015698142912856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5419606784233282358}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 989b3b3a570937141b1c3dbfb1dc7cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_lowerDisp: {fileID: 7766794624258920348}
-  m_upperDisp: {fileID: 7766794624258920348}
-  keyborad: {fileID: 0}
-  m_sKey: 2
+      m_Calls:
+      - m_Target: {fileID: 4449721481549372445}
+        m_TargetAssemblyTypeName: TLab.VKeyborad.TLabVKeyborad, TLabVKeyborad.Runtime
+        m_MethodName: SwitchLayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5446444916121606100
 GameObject:
   m_ObjectHideFlags: 0
@@ -12965,7 +12960,7 @@ GameObject:
   - component: {fileID: 4094004272808329421}
   - component: {fileID: 9118063877942925204}
   m_Layer: 5
-  m_Name: Operator
+  m_Name: LayerS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16355,16 +16350,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30781e215bec0be449adcdfe5d2a9a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_keyStroke: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
-  m_keyBOX: {fileID: 6250075376898082428}
-  m_romajiBOX: {fileID: 562695014522355220}
-  m_symbolBOX: {fileID: 634706141011536119}
-  m_operatorBOX: {fileID: 5699471215460085490}
-  m_hideOnStart: 0
-  m_anchor: {fileID: 0}
   m_onVisibilityChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_inputFieldBase: {fileID: 0}
+  m_keyStroke: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
+  m_keyBOX: {fileID: 6250075376898082428}
+  m_layer0: {fileID: 562695014522355220}
+  m_layer1: {fileID: 634706141011536119}
+  m_LayerS: {fileID: 5699471215460085490}
+  m_hideOnStart: 0
+  m_anchor: {fileID: 0}
   m_keyImage: {fileID: 0}
   m_keyMat: {fileID: 0}
   m_keyImageColor: {r: 0.9137255, g: 0.7372549, b: 0.35686275, a: 0.36078432}
@@ -16376,7 +16372,6 @@ MonoBehaviour:
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
-  m_inputFieldBase: {fileID: 0}
 --- !u!1 &7153047261190702050
 GameObject:
   m_ObjectHideFlags: 0
@@ -17466,7 +17461,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 5889493363881225346}
   m_upperDisp: {fileID: 5889493363881225346}
   keyborad: {fileID: 0}
-  m_sKey: 5
+  m_sKey: 4
 --- !u!1 &7575187961132646304
 GameObject:
   m_ObjectHideFlags: 0

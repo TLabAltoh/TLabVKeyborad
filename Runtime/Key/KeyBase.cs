@@ -10,15 +10,9 @@ namespace TLab.VKeyborad
 
         [HideInInspector] public TLabVKeyborad keyborad;
 
-        public virtual void OnPress()
-        {
+        public virtual void OnPress() { }
 
-        }
-
-        public virtual void OnShift()
-        {
-
-        }
+        public virtual void OnShift() { }
 
         protected virtual void OnEnable()
         {
@@ -33,12 +27,12 @@ namespace TLab.VKeyborad
         }
 
 #if UNITY_EDITOR
-        public virtual void Setup()
+        public virtual void SetUp()
         {
             UnityEditor.GameObjectUtility.RemoveMonoBehavioursWithMissingScript(this.gameObject);
         }
 #endif
 
-        public static KeyBase[] Keys(GameObject target) => target.GetComponentsInChildren<KeyBase>();
+        public static KeyBase[] Keys(GameObject target, bool includeInactive) => target.GetComponentsInChildren<KeyBase>(includeInactive);
     }
 }

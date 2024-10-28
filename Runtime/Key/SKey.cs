@@ -6,7 +6,6 @@ namespace TLab.VKeyborad
     {
         BACKSPACE,
         TAB,
-        SYMBOL,
         SPACE,
         SHIFT,
         RETURN
@@ -16,21 +15,14 @@ namespace TLab.VKeyborad
     {
         [SerializeField] private SKeyCode m_sKey;
 
-        public override void OnPress()
-        {
-            keyborad.OnSKeyPress(m_sKey);
-        }
+        public override void OnPress() => keyborad.OnSKeyPress(m_sKey);
 
-        public override void OnShift()
-        {
-            m_upperDisp.SetActive(true);
-            m_lowerDisp.SetActive(true);
-        }
+        public override void OnShift() => m_lowerDisp.SetActive(true);
 
 #if UNITY_EDITOR
-        public override void Setup()
+        public override void SetUp()
         {
-            base.Setup();
+            base.SetUp();
 
             string name = gameObject.name;
             switch (name)
@@ -46,9 +38,6 @@ namespace TLab.VKeyborad
                     break;
                 case "SPACE":
                     m_sKey = SKeyCode.SPACE;
-                    break;
-                case "SYMBOL":
-                    m_sKey = SKeyCode.SYMBOL;
                     break;
                 case "TAB":
                     m_sKey = SKeyCode.TAB;
