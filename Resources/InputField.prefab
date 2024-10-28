@@ -2046,7 +2046,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 1505865885803612144}
   m_upperDisp: {fileID: 1505865885803612144}
   keyborad: {fileID: 0}
-  m_sKey: 3
+  m_sKey: 2
 --- !u!1 &917698622640642059
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,7 +4494,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 2616463911025369937}
   m_upperDisp: {fileID: 2616463911025369937}
   keyborad: {fileID: 0}
-  m_sKey: 5
+  m_sKey: 4
 --- !u!1 &2015174206224183988
 GameObject:
   m_ObjectHideFlags: 0
@@ -9849,7 +9849,7 @@ GameObject:
   - component: {fileID: 474902394863546037}
   - component: {fileID: 1648473316642766854}
   m_Layer: 5
-  m_Name: Operator
+  m_Name: LayerS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11760,9 +11760,6 @@ MonoBehaviour:
   m_onBackSpacePressed:
     m_PersistentCalls:
       m_Calls: []
-  m_onSymbolPressed:
-    m_PersistentCalls:
-      m_Calls: []
   m_onKeyPressed:
     m_PersistentCalls:
       m_Calls: []
@@ -12192,8 +12189,6 @@ GameObject:
   - component: {fileID: 5464488148178896028}
   - component: {fileID: 6043401043241901141}
   - component: {fileID: 2630289682061256559}
-  - component: {fileID: 5319694429561272730}
-  - component: {fileID: 1707511364366487188}
   m_Layer: 5
   m_Name: SYMBOL
   m_TagString: Untagged
@@ -12303,43 +12298,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6043401043241901141}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5319694429561272730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4944742511691693820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreLayout: 0
-  m_MinWidth: 100
-  m_MinHeight: -1
-  m_PreferredWidth: -1
-  m_PreferredHeight: -1
-  m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
-  m_LayoutPriority: 1
---- !u!114 &1707511364366487188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4944742511691693820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 989b3b3a570937141b1c3dbfb1dc7cea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_lowerDisp: {fileID: 3400046491522987856}
-  m_upperDisp: {fileID: 3400046491522987856}
-  keyborad: {fileID: 0}
-  m_sKey: 2
+      m_Calls:
+      - m_Target: {fileID: 4449721481549372445}
+        m_TargetAssemblyTypeName: TLab.VKeyborad.TLabVKeyborad, TLabVKeyborad.Runtime
+        m_MethodName: SwitchLayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4961333105137160066
 GameObject:
   m_ObjectHideFlags: 0
@@ -14380,7 +14351,7 @@ GameObject:
   - component: {fileID: 4354002691400699235}
   - component: {fileID: 8935884214517717056}
   m_Layer: 5
-  m_Name: Romaji
+  m_Name: Layer0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16117,7 +16088,7 @@ GameObject:
   - component: {fileID: 5986317103184295914}
   - component: {fileID: 7904678257290676367}
   m_Layer: 5
-  m_Name: Symbols
+  m_Name: Layer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18100,16 +18071,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30781e215bec0be449adcdfe5d2a9a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_keyStroke: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
-  m_keyBOX: {fileID: 5674754589941070759}
-  m_romajiBOX: {fileID: 5572544816999795458}
-  m_symbolBOX: {fileID: 6014961633439098267}
-  m_operatorBOX: {fileID: 4108242326666228828}
-  m_hideOnStart: 1
-  m_anchor: {fileID: 0}
   m_onVisibilityChanged:
     m_PersistentCalls:
       m_Calls: []
+  m_inputFieldBase: {fileID: 0}
+  m_keyStroke: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
+  m_keyBOX: {fileID: 5674754589941070759}
+  m_layer0: {fileID: 5572544816999795458}
+  m_layer1: {fileID: 6014961633439098267}
+  m_LayerS: {fileID: 4108242326666228828}
+  m_hideOnStart: 1
+  m_anchor: {fileID: 0}
   m_keyImage: {fileID: 0}
   m_keyMat: {fileID: 0}
   m_keyImageColor: {r: 0.9137255, g: 0.7372549, b: 0.35686275, a: 0.78039217}
@@ -18121,7 +18093,6 @@ MonoBehaviour:
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
-  m_inputFieldBase: {fileID: 0}
 --- !u!1 &7099412749576228766
 GameObject:
   m_ObjectHideFlags: 0
@@ -21079,7 +21050,7 @@ MonoBehaviour:
   m_lowerDisp: {fileID: 6993434287078010387}
   m_upperDisp: {fileID: 6993434287078010387}
   keyborad: {fileID: 0}
-  m_sKey: 4
+  m_sKey: 3
 --- !u!1 &8218656655685000894
 GameObject:
   m_ObjectHideFlags: 0

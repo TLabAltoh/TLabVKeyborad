@@ -7,27 +7,18 @@ namespace TLab.VKeyborad
         [SerializeField] private string m_lower;
         [SerializeField] private string m_upper;
 
-        public override void OnPress()
-        {
-            keyborad.OnKeyPress(keyborad.shift ? m_upper : m_lower);
-        }
+        public override void OnPress() => keyborad.OnKeyPress(keyborad.shift ? m_upper : m_lower);
 
         private void SwitchDisp()
         {
-            if (keyborad != null)
-            {
-                if (keyborad.gameObject.activeSelf)
-                {
-                    m_upperDisp.SetActive(keyborad.shift);
-                    m_lowerDisp.SetActive(!keyborad.shift);
-                }
-            }
+            if (keyborad == null)
+                return;
+
+            m_upperDisp.SetActive(keyborad.shift);
+            m_lowerDisp.SetActive(!keyborad.shift);
         }
 
-        public override void OnShift()
-        {
-            SwitchDisp();
-        }
+        public override void OnShift() => SwitchDisp();
 
         protected override void OnEnable()
         {
@@ -37,9 +28,9 @@ namespace TLab.VKeyborad
         }
 
 #if UNITY_EDITOR
-        public override void Setup()
+        public override void SetUp()
         {
-            base.Setup();
+            base.SetUp();
 
             string[] split = gameObject.name.Split(" ");
             switch (split.Length)

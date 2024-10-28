@@ -6,7 +6,7 @@ namespace TLab.VKeyborad
     public class InputFieldBase : MonoBehaviour
     {
         [Header("Keyborad")]
-        [SerializeField] protected TLabVKeyborad m_keyborad;
+        [SerializeField] protected VKeyboradBase m_keyborad;
 
         [Header("Option")]
         [SerializeField] protected bool m_activeOnAwake = false;
@@ -18,12 +18,11 @@ namespace TLab.VKeyborad
         [SerializeField] protected UnityEvent m_onShiftPressed;
         [SerializeField] protected UnityEvent m_onSpacePressed;
         [SerializeField] protected UnityEvent m_onBackSpacePressed;
-        [SerializeField] protected UnityEvent m_onSymbolPressed;
         [SerializeField] protected UnityEvent<string> m_onKeyPressed;
 
         public bool inputFieldIsActive => m_keyborad.inputFieldBase == this;
 
-        public TLabVKeyborad keyborad
+        public VKeyboradBase keyborad
         {
             get => m_keyborad;
             set => m_keyborad = value;
@@ -59,9 +58,6 @@ namespace TLab.VKeyborad
 
         public virtual void OnBackSpacePressed() => AfterOnBackSpacePressed();
         protected virtual void AfterOnBackSpacePressed() => m_onBackSpacePressed.Invoke();
-
-        public virtual void OnSymbolPressed() => AfterOnSymbolPressed();
-        protected virtual void AfterOnSymbolPressed() => m_onSymbolPressed.Invoke();
 
         public virtual void OnKeyPressed(string input)
         {
