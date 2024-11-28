@@ -3,26 +3,35 @@ using UnityEngine.Events;
 
 namespace TLab.VKeyborad
 {
-    public class InputFieldBase : MonoBehaviour
+    public class BaseInputField : MonoBehaviour
     {
-        [Header("Keyborad")]
-        [SerializeField] protected VKeyboradBase m_keyborad;
+        [System.Serializable]
+        public class FieldEvent
+        {
+            public UnityEvent<bool> onFocus;
+        }
+
+        [System.Serializable]
+        public class KeyEvent
+        {
+            public UnityEvent onEnter;
+            public UnityEvent onTab;
+            public UnityEvent onShift;
+            public UnityEvent onSpace;
+            public UnityEvent onBackSpace;
+            public UnityEvent<string> onKey;
+        }
+
+        [SerializeField] protected BaseVKeyborad m_keyborad;
+        [SerializeField] protected KeyEvent m_keyEvent;
+        [SerializeField] protected FieldEvent m_fieldEvent;
 
         [Header("Option")]
         [SerializeField] protected bool m_activeOnAwake = false;
 
-        [Header("Event")]
-        [SerializeField] protected UnityEvent<bool> m_onFocus;
-        [SerializeField] protected UnityEvent m_onEnterPressed;
-        [SerializeField] protected UnityEvent m_onTabPressed;
-        [SerializeField] protected UnityEvent m_onShiftPressed;
-        [SerializeField] protected UnityEvent m_onSpacePressed;
-        [SerializeField] protected UnityEvent m_onBackSpacePressed;
-        [SerializeField] protected UnityEvent<string> m_onKeyPressed;
-
         public bool inputFieldIsActive => m_keyborad.inputFieldBase == this;
 
-        public VKeyboradBase keyborad
+        public BaseVKeyborad keyborad
         {
             get => m_keyborad;
             set => m_keyborad = value;
@@ -30,42 +39,42 @@ namespace TLab.VKeyborad
 
         #region KEY_EVENT
 
-        public virtual void OnEnterPressed()
+        public virtual void OnEnterKey()
         {
-            AfterOnEnterPressed();
+            AfterOnEnterKey();
         }
 
-        protected virtual void AfterOnEnterPressed() => m_onEnterPressed.Invoke();
+        protected virtual void AfterOnEnterKey() => m_keyEvent.onEnter.Invoke();
 
-        public virtual void OnTabPressed()
+        public virtual void OnTabKey()
         {
             AddKey("    ");
 
-            AfterOnTabPressed();
+            AfterOnTabKey();
         }
-        protected virtual void AfterOnTabPressed() => m_onTabPressed.Invoke();
+        protected virtual void AfterOnTabKey() => m_keyEvent.onTab.Invoke();
 
-        public virtual void OnShiftPressed() => AfterOnShiftPressed();
-        protected virtual void AfterOnShiftPressed() => m_onShiftPressed.Invoke();
+        public virtual void OnShiftKey() => AfterOnShiftKey();
+        protected virtual void AfterOnShiftKey() => m_keyEvent.onShift.Invoke();
 
-        public virtual void OnSpacePressed()
+        public virtual void OnSpaceKey()
         {
             AddKey(" ");
 
-            AfterOnSpacePressed();
+            AfterOnSpaceKey();
         }
-        protected virtual void AfterOnSpacePressed() => m_onSpacePressed.Invoke();
+        protected virtual void AfterOnSpaceKey() => m_keyEvent.onSpace.Invoke();
 
-        public virtual void OnBackSpacePressed() => AfterOnBackSpacePressed();
-        protected virtual void AfterOnBackSpacePressed() => m_onBackSpacePressed.Invoke();
+        public virtual void OnBackSpaceKey() => AfterOnBackSpaceKey();
+        protected virtual void AfterOnBackSpaceKey() => m_keyEvent.onBackSpace.Invoke();
 
-        public virtual void OnKeyPressed(string input)
+        public virtual void OnKey(string input)
         {
             AddKey(input);
 
-            AfterOnKeyPressed(input);
+            AfterOnKey(input);
         }
-        public virtual void AfterOnKeyPressed(string input) => m_onKeyPressed.Invoke(input);
+        public virtual void AfterOnKey(string input) => m_keyEvent.onKey.Invoke(input);
 
         public virtual void AddKey(string input) { }
 
@@ -94,7 +103,7 @@ namespace TLab.VKeyborad
             }
         }
 
-        protected virtual void AfterOnFocus(bool active) => m_onFocus.Invoke(active);
+        protected virtual void AfterOnFocus(bool active) => m_fieldEvent.onFocus.Invoke(active);
 
         public virtual void OnFocus(bool active)
         {
@@ -106,7 +115,7 @@ namespace TLab.VKeyborad
             if (m_keyborad.mobile)
                 m_keyborad.SetVisibility(active);
 
-            m_onFocus.Invoke(active);
+            m_fieldEvent.onFocus.Invoke(active);
         }
 
         public virtual void OnFocus() => OnFocus(true);

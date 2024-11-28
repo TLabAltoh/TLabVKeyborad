@@ -3,15 +3,12 @@ using UnityEditor;
 
 namespace TLab.VKeyborad.Editor
 {
-    [CustomEditor(typeof(TLabVKeyborad))]
-    public class TLabVKeyboradEditor : UnityEditor.Editor
+    [CustomEditor(typeof(VKeyborad))]
+    public class VKeyboradEditor : UnityEditor.Editor
     {
-        private TLabVKeyborad m_instance;
+        private VKeyborad m_instance;
 
-        private void OnEnable()
-        {
-            m_instance = target as TLabVKeyborad;
-        }
+        private void OnEnable() => m_instance = target as VKeyborad;
 
         public override void OnInspectorGUI()
         {

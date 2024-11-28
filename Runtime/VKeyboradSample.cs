@@ -3,7 +3,7 @@ using TMPro;
 
 namespace TLab.VKeyborad
 {
-    public class TLabVKeyboradSample : MonoBehaviour
+    public class VKeyboradSample : MonoBehaviour
     {
         [SerializeField] TextMeshProUGUI isThisMobile;
 
