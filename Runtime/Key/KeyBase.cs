@@ -8,7 +8,7 @@ namespace TLab.VKeyborad
         [SerializeField] protected GameObject m_lowerDisp;
         [SerializeField] protected GameObject m_upperDisp;
 
-        [HideInInspector] public TLabVKeyborad keyborad;
+        [HideInInspector] public VKeyborad keyborad;
 
         public virtual void OnPress() { }
 

@@ -14469,7 +14469,7 @@ GameObject:
   - component: {fileID: 5896119854792346468}
   - component: {fileID: 6235812621243258140}
   m_Layer: 5
-  m_Name: VirtualKeyboard
+  m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16215,7 +16215,7 @@ GameObject:
   - component: {fileID: 7775150997293162039}
   - component: {fileID: 4449721481549372445}
   m_Layer: 5
-  m_Name: SimpleKeyborad
+  m_Name: VKeyborad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16353,7 +16353,7 @@ MonoBehaviour:
   m_onVisibilityChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_inputFieldBase: {fileID: 0}
+  m_inputField: {fileID: 0}
   m_keyStroke: {fileID: 8300000, guid: 9556601aaf768bf40b1cce8fa7216344, type: 3}
   m_keyBOX: {fileID: 6250075376898082428}
   m_layer0: {fileID: 562695014522355220}

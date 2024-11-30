@@ -3,13 +3,13 @@ using UnityEngine.Events;
 
 namespace TLab.VKeyborad
 {
-    public class VKeyboradBase : MonoBehaviour
+    public class BaseVKeyborad : MonoBehaviour
     {
         [Header("Callback")]
         [SerializeField] protected UnityEvent<bool> m_onVisibilityChanged;
 
         [SerializeField, HideInInspector]
-        protected InputFieldBase m_inputFieldBase;
+        protected BaseInputField m_inputField;
 
         protected bool m_mobile = false;
         protected bool m_initialized = false;
@@ -27,11 +27,11 @@ namespace TLab.VKeyborad
 
         public virtual bool isVisible => true;
 
-        public InputFieldBase inputFieldBase => m_inputFieldBase;
+        public BaseInputField inputFieldBase => m_inputField;
 
         private string THIS_NAME => "[ " + this.GetType() + "] ";
 
-        public virtual void SwitchInputField(InputFieldBase inputFieldBase) => m_inputFieldBase = inputFieldBase;
+        public virtual void SwitchInputField(BaseInputField inputFieldBase) => m_inputField = inputFieldBase;
 
         public virtual void SetVisibility(bool active)
         {

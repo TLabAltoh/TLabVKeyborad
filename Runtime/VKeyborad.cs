@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace TLab.VKeyborad
 {
     [RequireComponent(typeof(AudioSource))]
-    public class TLabVKeyborad : VKeyboradBase
+    public class VKeyborad : BaseVKeyborad
     {
         [Header("Audio")]
         [SerializeField] private AudioClip m_keyStroke;
@@ -121,10 +121,10 @@ namespace TLab.VKeyborad
                     switch (sKey)
                     {
                         case SKeyCode.BACKSPACE:
-                            m_inputFieldBase?.OnBackSpacePressed();
+                            m_inputField?.OnBackSpaceKey();
                             break;
                         case SKeyCode.RETURN:
-                            m_inputFieldBase?.OnEnterPressed();
+                            m_inputField?.OnEnterKey();
                             break;
                         case SKeyCode.SHIFT:
                             m_shift = !m_shift;
@@ -132,13 +132,13 @@ namespace TLab.VKeyborad
                             foreach (var key in KeyBase.Keys(m_keyBOX, false))
                                 key.OnShift();
 
-                            m_inputFieldBase?.OnShiftPressed();
+                            m_inputField?.OnShiftKey();
                             break;
                         case SKeyCode.SPACE:
-                            m_inputFieldBase?.OnSpacePressed();
+                            m_inputField?.OnSpaceKey();
                             break;
                         case SKeyCode.TAB:
-                            m_inputFieldBase?.OnTabPressed();
+                            m_inputField?.OnTabKey();
                             break;
                     }
 
@@ -147,7 +147,7 @@ namespace TLab.VKeyborad
 
                 foreach (string key in m_keyBuffer)
                 {
-                    m_inputFieldBase?.OnKeyPressed(key);
+                    m_inputField?.OnKey(key);
 
                     AudioHandler.ShotAudio(m_audioSource, m_keyStroke, IMMEDIATELY);
                 }
@@ -165,28 +165,28 @@ namespace TLab.VKeyborad
 
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
-                        m_inputFieldBase?.OnEnterPressed();
+                        m_inputField?.OnEnterKey();
                     }
                     else if (Input.GetKeyDown(KeyCode.Tab))
                     {
-                        m_inputFieldBase?.OnTabPressed();
+                        m_inputField?.OnTabKey();
                     }
                     else if (Input.GetKeyDown(KeyCode.Space))
                     {
-                        m_inputFieldBase?.OnSpacePressed();
+                        m_inputField?.OnSpaceKey();
                     }
                     else if (Input.GetKey(KeyCode.Backspace) && m_inertia > INERTIA)
                     {
-                        m_inputFieldBase?.OnBackSpacePressed();
+                        m_inputField?.OnBackSpaceKey();
                         m_inertia = 0.0f;
                     }
                     else if (inputString != "" && inputString != "")
                     {
-                        m_inputFieldBase?.OnKeyPressed(inputString);
+                        m_inputField?.OnKey(inputString);
                     }
                     else if (Input.GetMouseButtonDown(1))
                     {
-                        m_inputFieldBase?.OnKeyPressed(GUIUtility.systemCopyBuffer);
+                        m_inputField?.OnKey(GUIUtility.systemCopyBuffer);
                     }
                 }
             }
