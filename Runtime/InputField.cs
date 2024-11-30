@@ -36,27 +36,18 @@ namespace TLab.VKeyborad
 
         #region KEY_EVENT
 
-        public override void OnBackSpaceKey()
+        protected override void HandlingOnBackSpaceKey()
         {
             if (m_text != "")
             {
                 m_text = m_text.Remove(text.Length - 1);
                 Display();
             }
-
-            AfterOnBackSpaceKey();
         }
 
         #endregion KEY_EVENT
 
         #region FOUCUS_EVENET
-
-        public override void OnFocus(bool active)
-        {
-            base.OnFocus(active);
-
-            AfterOnFocus(active);
-        }
 
         protected override void AfterOnFocus(bool active)
         {
