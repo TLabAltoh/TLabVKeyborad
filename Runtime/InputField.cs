@@ -17,8 +17,19 @@ namespace TLab.VKeyborad
 
         [Header("Button")]
         [SerializeField] protected Button m_focusButton;
+        [SerializeField] protected bool m_disableInteractOnFocusOn = false;
 
         private string m_text = "";
+
+        public bool disableInteractOnFocusOn
+        {
+            get => m_disableInteractOnFocusOn;
+            set
+            {
+                if (m_disableInteractOnFocusOn != value)
+                    m_disableInteractOnFocusOn = value;
+            }
+        }
 
         public string text
         {
@@ -51,7 +62,8 @@ namespace TLab.VKeyborad
 
         protected override void AfterOnFocus(bool active)
         {
-            m_focusButton.enabled = !active;
+            if (m_disableInteractOnFocusOn)
+                m_focusButton.enabled = !active;
 
             base.AfterOnFocus(active);
         }

@@ -11729,10 +11729,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_keyborad: {fileID: 4449721481549372445}
-  m_basicEvent:
-    onFocus:
-      m_PersistentCalls:
-        m_Calls: []
   m_keyEvent:
     onEnter:
       m_PersistentCalls:
@@ -11764,10 +11760,18 @@ MonoBehaviour:
     onKey:
       m_PersistentCalls:
         m_Calls: []
+  m_fieldEvent:
+    onFocus:
+      m_PersistentCalls:
+        m_Calls: []
   m_activeOnAwake: 0
+  m_onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
   m_inputText: {fileID: 2427026501612935423}
   m_placeholder: {fileID: 18712571303950289}
   m_focusButton: {fileID: 6425820960652440003}
+  m_disableInteractOnFocusOn: 0
 --- !u!1 &4740083426634351893
 GameObject:
   m_ObjectHideFlags: 0
