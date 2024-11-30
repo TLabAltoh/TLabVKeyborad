@@ -630,29 +630,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_keyborad: {fileID: 0}
-  m_eventCallback:
+  m_keyEvent:
+    onEnter:
+      m_PersistentCalls:
+        m_Calls: []
+    onTab:
+      m_PersistentCalls:
+        m_Calls: []
+    onShift:
+      m_PersistentCalls:
+        m_Calls: []
+    onSpace:
+      m_PersistentCalls:
+        m_Calls: []
+    onBackSpace:
+      m_PersistentCalls:
+        m_Calls: []
+    onKey:
+      m_PersistentCalls:
+        m_Calls: []
+  m_fieldEvent:
     onFocus:
       m_PersistentCalls:
         m_Calls: []
-    onEnterPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onTabPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onShiftPressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onSpacePressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onBackSpacePressed:
-      m_PersistentCalls:
-        m_Calls: []
-    onKeyPressed:
-      m_PersistentCalls:
-        m_Calls: []
   m_activeOnAwake: 0
+  m_onValueChanged:
+    m_PersistentCalls:
+      m_Calls: []
   m_inputText: {fileID: 304338269269483945}
   m_placeholder: {fileID: 2726304268257824391}
   m_focusButton: {fileID: 8987680362804463765}
+  m_disableInteractOnFocusOn: 0
