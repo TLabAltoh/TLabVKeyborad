@@ -937,7 +937,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2600967325371253131}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: TLab.VKeyborad.InputField, TLab.VKeyborad.Runtime
         m_MethodName: OnFocus
         m_Mode: 6
@@ -11551,7 +11551,7 @@ GameObject:
   - component: {fileID: 1894316927131866667}
   - component: {fileID: 2628628934032442434}
   - component: {fileID: 504689172044613616}
-  - component: {fileID: 2600967325371253131}
+  - component: {fileID: 6879590976483999235}
   m_Layer: 5
   m_Name: InputField
   m_TagString: Untagged
@@ -11716,7 +11716,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &2600967325371253131
+--- !u!114 &6879590976483999235
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11733,8 +11733,8 @@ MonoBehaviour:
     onEnter:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 2600967325371253131}
-          m_TargetAssemblyTypeName: TLab.VKeyborad.InputField, TLab.VKeyborad.Runtime
+        - m_Target: {fileID: 6879590976483999235}
+          m_TargetAssemblyTypeName: TLab.VKeyborad.BaseInputField, TLab.VKeyborad.Runtime
           m_MethodName: OnFocus
           m_Mode: 6
           m_Arguments:
