@@ -4,11 +4,11 @@ namespace TLab.VKeyborad
 {
     public enum SKeyCode
     {
-        BACKSPACE,
-        TAB,
-        SPACE,
-        SHIFT,
-        RETURN
+        BackSpace,
+        Tab,
+        Space,
+        Shift,
+        Return,
     }
 
     public class SKey : KeyBase
@@ -27,20 +27,20 @@ namespace TLab.VKeyborad
             string name = gameObject.name;
             switch (name)
             {
-                case "BACKSPACE":
-                    m_sKey = SKeyCode.BACKSPACE;
+                case "BackSpace":
+                    m_sKey = SKeyCode.BackSpace;
                     break;
-                case "RETURN":
-                    m_sKey = SKeyCode.RETURN;
+                case "Return":
+                    m_sKey = SKeyCode.Return;
                     break;
-                case "SHIFT":
-                    m_sKey = SKeyCode.SHIFT;
+                case "Shift":
+                    m_sKey = SKeyCode.Shift;
                     break;
-                case "SPACE":
-                    m_sKey = SKeyCode.SPACE;
+                case "Space":
+                    m_sKey = SKeyCode.Space;
                     break;
-                case "TAB":
-                    m_sKey = SKeyCode.TAB;
+                case "Tab":
+                    m_sKey = SKeyCode.Tab;
                     break;
             }
 

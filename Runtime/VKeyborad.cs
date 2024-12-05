@@ -120,13 +120,13 @@ namespace TLab.VKeyborad
                 {
                     switch (sKey)
                     {
-                        case SKeyCode.BACKSPACE:
+                        case SKeyCode.BackSpace:
                             m_inputField?.OnBackSpaceKey();
                             break;
-                        case SKeyCode.RETURN:
+                        case SKeyCode.Return:
                             m_inputField?.OnEnterKey();
                             break;
-                        case SKeyCode.SHIFT:
+                        case SKeyCode.Shift:
                             m_shift = !m_shift;
 
                             foreach (var key in KeyBase.Keys(m_keyBOX, false))
@@ -134,10 +134,10 @@ namespace TLab.VKeyborad
 
                             m_inputField?.OnShiftKey();
                             break;
-                        case SKeyCode.SPACE:
+                        case SKeyCode.Space:
                             m_inputField?.OnSpaceKey();
                             break;
-                        case SKeyCode.TAB:
+                        case SKeyCode.Tab:
                             m_inputField?.OnTabKey();
                             break;
                     }

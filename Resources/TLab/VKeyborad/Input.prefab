@@ -1902,7 +1902,7 @@ GameObject:
   - component: {fileID: 8498680313443219403}
   - component: {fileID: 1842978771005427551}
   m_Layer: 5
-  m_Name: SPACE
+  m_Name: Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4370,7 +4370,7 @@ GameObject:
   - component: {fileID: 5502011005317464979}
   - component: {fileID: 2113964394761864822}
   m_Layer: 5
-  m_Name: RETURN
+  m_Name: Return
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6080,7 +6080,7 @@ GameObject:
   - component: {fileID: 1262956150077753116}
   - component: {fileID: 3002617628419145051}
   m_Layer: 5
-  m_Name: TAB
+  m_Name: Tab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12196,7 +12196,7 @@ GameObject:
   - component: {fileID: 6043401043241901141}
   - component: {fileID: 2630289682061256559}
   m_Layer: 5
-  m_Name: SYMBOL
+  m_Name: Switch Layer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19205,7 +19205,7 @@ GameObject:
   - component: {fileID: 5826317803225319161}
   - component: {fileID: 4572310071631795564}
   m_Layer: 5
-  m_Name: BACKSPACE
+  m_Name: BackSpace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20932,7 +20932,7 @@ GameObject:
   - component: {fileID: 5859002561832787538}
   - component: {fileID: 3363944652730382298}
   m_Layer: 5
-  m_Name: SHIFT
+  m_Name: Shift
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
