@@ -62,6 +62,8 @@ namespace TLab.VKeyborad
 
                     if (m_inputHolder is Object)
                         m_inputHolderObj = m_inputHolder as Object;
+                    else if (m_inputHolder == null)
+                        m_inputHolderObj = null;
                 }
             }
         }
