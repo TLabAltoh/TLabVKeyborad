@@ -937,10 +937,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: TLab.VKeyborad.InputField, TLab.VKeyborad.Runtime
-        m_MethodName: OnFocus
-        m_Mode: 6
+      - m_Target: {fileID: 6879590976483999235}
+        m_TargetAssemblyTypeName: TLab.VKeyborad.BaseInputField, TLab.VKeyborad.Runtime
+        m_MethodName: OnSwitchFocus
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11765,6 +11765,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   m_activeOnAwake: 0
+  m_inputHolderObj: {fileID: 0}
   m_onValueChanged:
     m_PersistentCalls:
       m_Calls: []
