@@ -5,9 +5,13 @@ using TMPro;
 
 namespace TLab.VKeyborad
 {
-    [AddComponentMenu("TLab/VKeyborad/InputField (TLab)")]
+    [AddComponentMenu("TLab/VKeyborad/Input Field (TLab)")]
     public class InputField : BaseInputField
     {
+        [Header("Holder")]
+        [SerializeField, Interface(typeof(IInputHolder))] protected Object m_inputHolderObj;
+        protected IInputHolder m_inputHolder;
+
         [Header("Event")]
         [SerializeField] protected UnityEvent<string> m_onValueChanged;
 
@@ -27,7 +31,9 @@ namespace TLab.VKeyborad
             set
             {
                 if (m_disableInteractOnFocusOn != value)
+                {
                     m_disableInteractOnFocusOn = value;
+                }
             }
         }
 
@@ -41,6 +47,18 @@ namespace TLab.VKeyborad
                     m_text = value;
 
                     Display();
+                }
+            }
+        }
+
+        public IInputHolder inputHolder
+        {
+            get => m_inputHolder;
+            set
+            {
+                if (m_inputHolder != value)
+                {
+                    m_inputHolder = value;
                 }
             }
         }
@@ -92,6 +110,9 @@ namespace TLab.VKeyborad
 
             SwitchPlaseholder();
 
+            if (m_inputHolder != null)
+                m_inputHolder.OnValueChanged(m_text);
+
             m_onValueChanged.Invoke(m_text);
         }
 
@@ -112,7 +133,19 @@ namespace TLab.VKeyborad
         {
             base.Start();
 
-            m_text = m_inputText.text;
+            if (m_inputHolderObj is IInputHolder)
+                m_inputHolder = m_inputHolderObj as IInputHolder;
+
+            if (m_inputHolder != null)
+            {
+                if (m_inputHolder.GetInitValue(out var value))
+                {
+                    m_text = value;
+                    m_inputText.text = m_text;
+                }
+                else
+                    m_text = m_inputText.text;
+            }
 
             SwitchPlaseholder();
         }
